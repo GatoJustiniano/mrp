@@ -159,12 +159,12 @@ Route::get('almacens/{almacen}/edit', 'AlmacenController@edit')->name('almacens.
 	Route::get('products/{product}/edit', 'ProductController@edit')->name('products.edit')
 		->middleware('can:products.edit');
 	
-		//Products
+		//departamento
 	Route::post('departamentos/store', 'DepartamentoController@store')->name('departamentos.store')
 		->middleware('can:departamentos.create');
 
 	Route::get('gestion-administrativa/departamentos', 'DepartamentoController@index')->name('departamentos.index')
-		->middleware('can:products.index');
+		->middleware('can:departamentos.index');
 
 	Route::get('gestion-administrativa/departamentos/create', 'DepartamentoController@create')->name('departamentos.create')
 		->middleware('can:departamentos.create');
@@ -203,6 +203,96 @@ Route::get('almacens/{almacen}/edit', 'AlmacenController@edit')->name('almacens.
 
     Route::post('area/store', 'AreaController@store')->name('areas.store')
         ->middleware('can:area.create');
+
+    //categorias
+    Route::post('categorias/store', 'CategoriaController@store')->name('categorias.store')
+        ->middleware('can:categorias.create');
+
+    Route::get('inventario/categorias', 'CategoriaController@index')->name('categorias.index')
+        ->middleware('can:categorias.index');
+
+    Route::get('inventario/categorias/create', 'CategoriaController@create')->name('categorias.create')
+        ->middleware('can:categorias.create');
+
+    Route::put('categorias/{categoria}', 'CategoriaController@update')->name('categorias.update')
+        ->middleware('can:categorias.edit');
+
+    Route::get('inventario/categorias/{categoria}', 'CategoriaController@show')->name('categorias.show')
+        ->middleware('can:categorias.show');
+
+    Route::delete('categorias/{categoria}', 'CategoriaController@destroy')->name('categorias.destroy')
+        ->middleware('can:categorias.destroy');
+
+    Route::get('categorias/{categoria}/edit', 'CategoriaController@edit')->name('categorias.edit')
+        ->middleware('can:categorias.edit');
+
+    //sub_categorias
+    Route::post('sub_categorias/store', 'SubCategoriaController@store')->name('sub_categorias.store')
+        ->middleware('can:sub_categorias.create');
+
+    Route::get('inventario/sub_categorias', 'SubCategoriaController@index')->name('sub_categorias.index')
+        ->middleware('can:sub_categorias.index');
+
+    Route::get('inventario/sub_categorias/create', 'SubCategoriaController@create')->name('sub_categorias.create')
+        ->middleware('can:sub_categorias.create');
+
+    Route::put('sub_categorias/{sub_categoria}', 'SubCategoriaController@update')->name('sub_categorias.update')
+        ->middleware('can:sub_categorias.edit');
+
+    Route::get('inventario/sub_categorias/{sub_categoria}', 'SubCategoriaController@show')->name('sub_categorias.show')
+        ->middleware('can:sub_categorias.show');
+
+    Route::delete('sub_categorias/{sub_categoria}', 'SubCategoriaController@destroy')->name('sub_categorias.destroy')
+        ->middleware('can:sub_categorias.destroy');
+
+    Route::get('sub_categorias/{sub_categoria}/edit', 'SubCategoriaController@edit')->name('sub_categorias.edit')
+        ->middleware('can:sub_categorias.edit');
+
+
+    //unidad medidas
+    Route::post('unidad_medidas/store', 'UnidadMedidaController@store')->name('unidad_medidas.store')
+        ->middleware('can:unidad_medidas.create');
+
+    Route::get('inventario/unidad_medidas', 'UnidadMedidaController@index')->name('unidad_medidas.index')
+        ->middleware('can:unidad_medidas.index');
+
+    Route::get('inventario/unidad_medidas/create', 'UnidadMedidaController@create')->name('unidad_medidas.create')
+        ->middleware('can:unidad_medidas.create');
+
+    Route::put('unidad_medidas/{unidad_medida}', 'UnidadMedidaController@update')->name('unidad_medidas.update')
+        ->middleware('can:categorias.edit');
+
+    Route::get('inventario/unidad_medidas/{unidad_medida}', 'UnidadMedidaController@show')->name('unidad_medidas.show')
+        ->middleware('can:unidad_medidas.show');
+
+    Route::delete('unidad_medidas/{unidad_medida}', 'UnidadMedidaController@destroy')->name('unidad_medidas.destroy')
+        ->middleware('can:unidad_medidas.destroy');
+
+    Route::get('unidad_medidas/{unidad_medida}/edit', 'UnidadMedidaController@edit')->name('unidad_medidas.edit')
+        ->middleware('can:unidad_medidas.edit');
+
+    //articulos
+    Route::post('articulos/store', 'ArticuloController@store')->name('articulos.store')
+        ->middleware('can:articulos.create');
+
+    Route::get('inventario/articulos', 'ArticuloController@index')->name('articulos.index')
+        ->middleware('can:articulos.index');
+
+    Route::get('inventario/articulos/create', 'ArticuloController@create')->name('articulos.create')
+        ->middleware('can:articulos.create');
+
+    Route::put('articulos/{articulo}', 'ArticuloController@update')->name('articulos.update')
+        ->middleware('can:articulos.edit');
+
+    Route::get('inventario/articulos/{articulo}', 'ArticuloController@show')->name('articulos.show')
+        ->middleware('can:articulos.show');
+
+    Route::delete('articulos/{articulo}', 'ArticuloController@destroy')->name('articulos.destroy')
+        ->middleware('can:articulos.destroy');
+
+    Route::get('articulos/{articulo}/edit', 'ArticuloController@edit')->name('articulos.edit')
+        ->middleware('can:articulos.edit');
+
 
 
 });

@@ -143,8 +143,10 @@
                 <ul class="nav flex-column">
                     <li><a class="nav-pills" href="#">Proveedor </a></li>
                     <li><a class="nav-pills" href="#">Materia Prima </a></li>
-                    <li><a class="nav-pills" href="#">Articulo </a></li>
-                   
+                    <li><a class="nav-pills" href="{{ route('articulos.index') }}">Articulo </a></li>
+                    <li><a class="nav-pills" href="{{ route('categorias.index') }}">Categoria </a></li>
+                    <li><a class="nav-pills" href="{{ route('sub_categorias.index') }}">Sub Categoria </a></li>
+                    <li><a class="nav-pills" href="{{ route('unidad_medidas.index') }}">Unidad de Medidas </a></li>
                     <li><a class="nav-pills" href="#"> Mov Inventario </a></li>
                 </ul>
             </li>
