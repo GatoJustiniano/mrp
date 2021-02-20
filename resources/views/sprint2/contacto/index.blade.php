@@ -38,8 +38,6 @@
                                 <th width="10px">ID</th>
                                 <th>Nombre </th>
                                 <th>Cargo</th>
-                                <th>Teléfono</th>
-                                <th>Celular</th>
                                 <th>Correo</th>
                                 <th>Proveedor</th>
                                 <th>Estado</th>
@@ -52,8 +50,6 @@
                                 <td>{{ $contacto->id }}</td>
                                 <td>{{ $contacto->nombre }}</td>
                                 <td>{{ $contacto->cargo }}</td>
-                                <td>{{ $contacto->telefono }}</td>
-                                <td>{{ $contacto->celular}}</td>
                                 <td>{{ $contacto->correo}}</td>
                                 <td>{{ $contacto->proveedor}}</td>
                                 <td>

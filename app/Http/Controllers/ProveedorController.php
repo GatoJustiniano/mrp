@@ -32,6 +32,7 @@ class ProveedorController extends Controller
                  'municipio.nombre as municipio'
                 )
         ->orderBy('codigo')
+        ->where('proveedors.eliminado',1)
         ->paginate(15);
 
         return view('sprint2/proveedor.index', compact('proveedores'));
@@ -139,20 +140,42 @@ class ProveedorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id,$tipo)
     {
-        $mensaje = Proveedor::find($id);
-
-        //Cambia el estado  eliminado del proveedor
         $proveedor = Proveedor::find($id);
-        $proveedor->eliminado = true;
 
-        //Cambia el estado eliminado de las areas dependientes de este proveedor
-        DB::table('areas')->where('departamento_id',$proveedor->id)->update(['eliminado'=>true]);
+        $mensaje = Proveedor::find($id);
+        $darBaja    ="200"; 
+        $darAlta    ="400";
+        $eliminado  ="600";
+        if($tipo === $darBaja){
+            //si es 200 de da de baja
+            $proveedor->estado = false;
+            Log::info( 'Proveedor dado de baja: ' .$mensaje->id . ' ' . $mensaje->nombre . ' ' . $mensaje->codigo );
+            $proveedor->save();
 
-        Log::info( 'Proveedor eliminado: ' .$mensaje->id . ' ' . $mensaje->nombre . ' ' . $mensaje->codigo );
-        $proveedor->save();
+            return back()->with('info', 'Dado de baja correctamente');
+        }
+        if($tipo === $darAlta){
+            //si es 400 dar Alta
+            $proveedor->estado = true;
+            Log::info( 'Proveedor dado de alta: ' .$mensaje->id . ' ' . $mensaje->nombre . ' ' . $mensaje->codigo );
+            $proveedor->save();
 
-        return back()->with('info', 'Eliminado correctamente');
+            return back()->with('info', 'Dado de alta correctamente');
+        }
+        if($tipo === $eliminado){
+            //si es 400 de cambia el eliminado
+            $proveedor->eliminado = false;
+
+            //Cambia el estado eliminado de las areas dependientes de este proveedor
+            //DB::table('areas')->where('departamento_id',$proveedor->id)->update(['eliminado'=>true]);
+
+            Log::info( 'Proveedor eliminado: ' .$mensaje->id . ' ' . $mensaje->nombre . ' ' . $mensaje->codigo );
+            $proveedor->save();
+
+            return back()->with('info', 'Eliminado correctamente');
+        }
+        
     }
 }

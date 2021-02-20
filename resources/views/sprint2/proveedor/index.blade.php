@@ -58,9 +58,9 @@
                                 <td>{{ $proveedor->municipio}}</td>
                                 <td>
                                     @if($proveedor->estado == 1)
-                                        Activo
+                                        <u>Activo</u>
                                     @else
-                                        Inactivo
+                                        <u>Inactivo</u>
                                     @endif
                                 </td>
 
@@ -82,9 +82,29 @@
                                 @endcan
                                 @can('proveedores.destroy')
                                 <td width="10px">
-                                    {!! Form::open(['route' => ['proveedores.destroy', $proveedor->id], 
+                                    @if($proveedor->estado === 1 )
+
+                                        {!! Form::open(['route' => ['proveedores.destroy', $proveedor->id, 200], 
+                                        'method' => 'DELETE']) !!}
+                                            <button class="btn btn-sm btn-danger">
+                                                Dar de baja
+                                            </button>
+                                        {!! Form::close() !!}
+                                    @else 
+                                        {!! Form::open(['route' => ['proveedores.destroy', $proveedor->id, 400], 
+                                        'method' => 'DELETE']) !!}
+                                            <button class="btn btn-sm btn-outline-success">
+                                                Dar de alta
+                                            </button>
+                                        {!! Form::close() !!}
+                                    @endif
+                                </td>
+                                @endcan
+                                @can('proveedores.destroy')
+                                <td width="10px">
+                                    {!! Form::open(['route' => ['proveedores.destroy', $proveedor->id, 600], 
                                     'method' => 'DELETE']) !!}
-                                        <button class="btn btn-sm btn-danger">
+                                        <button class="btn btn-sm btn-outline-danger">
                                             Eliminar
                                         </button>
                                     {!! Form::close() !!}

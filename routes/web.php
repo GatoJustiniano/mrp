@@ -249,7 +249,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('proveedor/{proveedor}/edit', 'ProveedorController@edit')->name('proveedores.edit')
         ->middleware('can:proveedor.edit');
 
-    Route::delete('proveedor/{proveedor}', 'ProveedorController@destroy')->name('proveedores.destroy')
+    Route::delete('proveedor/{proveedor}/{tipo}', 'ProveedorController@destroy')->name('proveedores.destroy')
         ->middleware('can:proveedor.destroy');
 
     Route::put('proveedor/{proveedor}', 'ProveedorController@update')->name('proveedores.update')
@@ -260,6 +260,8 @@ Route::middleware(['auth'])->group(function () {
 
     Route::post('proveedor/store', 'ProveedorController@store')->name('proveedores.store')
 		->middleware('can:proveedor.create');
+	
+
 		
 	//Contacto
     Route::get('sprint2/contacto', 'ContactoController@index')->name('contactos.index')

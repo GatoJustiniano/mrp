@@ -7,6 +7,10 @@
 @section('styles')
     <style>
 
+        html body.landing-page div.wrapper div#main div#container div.card-group div.card div.card-footer small.text-muted {
+            padding-top: 1rem !important;
+        }
+        
     </style>
 @endsection
 
@@ -56,7 +60,7 @@
         <div class="card">
             <img src="{{'/img/faces/marc.jpg'}}" class="card-img-top" alt="imagen de proveedor">
             <div class="card-body">
-                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal">
+                <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#exampleModal">
                     Contactos
                 </button>
             </div>
@@ -89,6 +93,7 @@
         </button>
       </div>
         <div class="modal-body">
+            <hr>
             @foreach($contactos as $contacto)
             <h5>{{$contacto->nombre}} 
                 <a href="{{ route('contactos.show', $contacto->id) }}" class="badge badge-warning">
@@ -105,10 +110,10 @@
             @endforeach
         </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-        <a href="{{ route('contactos.create') }}" class="btn btn-success" 
+        <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cerrar</button>
+        <a href="{{ route('contactos.create') }}" class="btn btn-success btn-sm" 
             role="button" aria-disabled="true">
-            Crea nuevo contacto
+            Crear nuevo contacto
         </a>
       </div>
     </div>
