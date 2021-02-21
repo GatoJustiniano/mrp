@@ -18,6 +18,13 @@
         <link href="{{ asset('/css/material-kit.min.css') }}" rel="stylesheet"/>
         <!-- CSS Just for demo purpose, don't include it in your project -->
         <link href="{{ asset('demo/demo.css') }}" rel="stylesheet" />
+        <!-- SELECT -->
+        <link href="{{ asset('/assets/bootstrap-select-1.13.14/dist/css/bootstrap-select.min.css') }}" rel="stylesheet"/>
+
+        <!-- CSS Files -->
+
+        <link href="{{asset('/assets/bootstrap-fileinput/css/fileinput.min.css')}}" media="all" rel="stylesheet" type="text/css" />
+
         <style>
             @media all and (max-width: 640px) {        
                 .nav-bar {
@@ -113,6 +120,16 @@
                             </li>
                         @else
                             <li class="dropdown nav-item">
+                                <a href="javascript:;" class="dropdown-toggle nav-link" data-toggle="dropdown">
+                                    <i class="material-icons">email</i>
+                                </a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li>
+                                        <a href="{{ url('/home') }}">Home</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="dropdown nav-item">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
@@ -178,10 +195,19 @@
     <!--  Plugin for the Datepicker, full documentation here: http://www.eyecon.ro/bootstrap-datepicker/ -->
     <script src="{{ asset('/js/plugins/bootstrap-datetimepicker.js') }}" type="text/javascript"></script>
 
-    
+    <!-- SELECTt -->
+    <script src="{{asset('/assets/bootstrap-select-1.13.14/dist/js/bootstrap-select.min.js')}}"></script>
 
     <!-- Control Center for Material Kit: activating the ripples, parallax effects, scripts from the example pages etc -->
     <script src="{{ asset('/js/material-kit.js') }}" type="text/javascript"></script>
+    <!-- jasny-bootstrap -->
+    <script src="{{ asset('/js/bootstrap.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('/js/bootstrap.js') }}" type="text/javascript"></script>
+    <!-- fileinput-bootstrap -->
+    <script src="{{asset('/assets/bootstrap-fileinput/js/fileinput.min.js')}}"></script>
+    <script src="{{asset('/assets/bootstrap-fileinput/themes/fa/theme.js')}}"></script>
+    <script src="{{asset('/assets/bootstrap-fileinput/js/locales/es.js')}}"></script>
+
     @yield('scripts')
 
 </html>

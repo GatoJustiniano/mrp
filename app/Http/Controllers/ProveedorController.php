@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
+class ProveedorController extends Controller
+{
 use App\Proveedor;
 
 use App\Estado;

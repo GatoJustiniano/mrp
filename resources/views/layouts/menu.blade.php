@@ -138,10 +138,10 @@
             <li>
                 <a class="nav-link" href="{{ route('sprint2') }}">Sprint 2</a>
                 <ul class="nav flex-column">
-                <li><a class="nav-pills" href="#">Categoría </a></li>
-                <li><a class="nav-pills" href="#">Sub Categoría </a></li>
-                <li><a class="nav-pills" href="#">Unidad de Medida </a></li>
-                <li><a class="nav-pills" href="#">Artículo </a></li>
+                <li><a class="nav-pills" href="{{ route('categorias.index') }}">Categoría </a></li>
+                <li><a class="nav-pills" href="{{ route('sub_categorias.index') }}">Sub Categoría </a></li>
+                <li><a class="nav-pills" href="{{ route('unidad_medidas.index') }}">Unidad de Medida </a></li>
+                <li><a class="nav-pills" href="{{ route('articulos.index') }}">Artículo </a></li>
                 <li><a class="nav-pills" href="{{ route('contactos.index') }}">Contacto </a></li>
                 <li><a class="nav-pills" href="{{ route('proveedores.index') }}">Proveedor </a></li>
                 </ul>
@@ -149,10 +149,14 @@
             <li>
               <a class="nav-link" href="{{ route('inventario') }}">Sprint 3</a>
                 <ul class="nav flex-column">
-                    <li><a class="nav-pills" href="#">Tarea 1 </a></li>
-                    <li><a class="nav-pills" href="#">Tarea 2 </a></li>
-                    <li><a class="nav-pills" href="#">Tarea 3 </a></li>
-                    <li><a class="nav-pills" href="#">Tarea 4 </a></li>
+                    <li><a class="nav-pills" href="#">Cliente </a></li>
+                    <li><a class="nav-pills" href="#">Pedido </a></li>
+                    <li><a class="nav-pills" href="#">Venta </a></li>
+                    <li><a class="nav-pills" href="#">Compra </a></li>
+                    <li><a class="nav-pills" href="#">View Mov de inventario </a></li>
+                    <li><a class="nav-pills" href="#">View Ingresos </a></li>
+                    <li><a class="nav-pills" href="#">View Salidas </a></li>
+                    <li><a class="nav-pills" href="#">View Inventario </a></li>
                 </ul>
             </li>
             <li>

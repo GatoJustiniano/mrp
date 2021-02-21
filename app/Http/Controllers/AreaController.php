@@ -52,7 +52,7 @@ class AreaController extends Controller
         $area->departamento_id= $request->input('departamento_id');
         $area->save();
 
-        return redirect()->route('area.edit', $area->id)
+        return redirect()->route('areas.edit', $area->id)
             ->with('info', 'Area guardada con éxito');
     }
 
