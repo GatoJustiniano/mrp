@@ -6,13 +6,20 @@ use Illuminate\Database\Eloquent\Model;
 
 class Estado extends Model
 {
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    
-    protected $fillable = [
-         'tipo_estado'
+    protected $table='estado';
+
+    protected $primaryKey='id';
+
+    public $timestamps=false;
+
+    protected $fillable =[
+    	'codigo',
+    	'nombre',
+    	'estado'
+    ];
+
+    protected $guarded =[
+
     ];
 }
+

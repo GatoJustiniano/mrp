@@ -29,9 +29,20 @@ class HomeController extends Controller
         return view('home');
     }
 
-   public function ges_adm(){
-        return view('gestion-administrativa.ges_adm');
+   public function sprint1(){
+        return view('sprint1.home');
     }
+    public function sprint2(){
+        return view('sprint2.home');
+    }
+    
+    public function inventario(){
+      return view('inventario.inventario');
+    }
+    public function settings(){
+        return view('herramientas.herramientas');
+    }
+
     public function nomina(){
         $empleados = DB::table('historial_empleado')
             ->join('empleado', 'id_empleado_historial', '=', 'id_empleado')
@@ -46,9 +57,6 @@ class HomeController extends Controller
                      )
             ->paginate(15);
         return view('nomina.nomina', compact('empleados'));
-    }
-      public function inventario(){
-      return view('inventario.inventario');
     }
 
 }

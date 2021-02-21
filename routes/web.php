@@ -16,8 +16,12 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::middleware(['auth'])->group(function () {
 
-	//Gestión Administrativa
-	Route::get('/gestion-administrativa', 'HomeController@ges_adm')->name('ges_adm');
+	//Sprint 1
+	Route::get('/sprint1', 'HomeController@sprint1')->name('sprint1');
+	//Sprint 2
+	Route::get('/sprint2', 'HomeController@sprint2')->name('sprint2');
+	//Herramientas
+	Route::get('/herramientas', 'HomeController@settings')->name('settings');
 	//Nómina
 	Route::get('/nomina', 'HomeController@nomina')->name('nomina');
 	//Inventario
@@ -48,6 +52,7 @@ Route::middleware(['auth'])->group(function () {
 
 	Route::get('roles/{role}/edit', 'RoleController@edit')->name('roles.edit')
 		->middleware('can:roles.edit');
+		
 	//Users
 	Route::get('users', 'UserController@index')->name('users.index')
 		->middleware('can:users.index');
@@ -67,7 +72,7 @@ Route::middleware(['auth'])->group(function () {
 	
 	
 
-		//Products
+	//Products
 	Route::post('products/store', 'ProductController@store')->name('products.store')
 		->middleware('can:products.create');
 
@@ -89,11 +94,11 @@ Route::middleware(['auth'])->group(function () {
 	Route::get('products/{product}/edit', 'ProductController@edit')->name('products.edit')
 		->middleware('can:products.edit');
 
-		//Sucursals
-		Route::post('sucursals/store', 'SucursalController@store')->name('sucursals.store')
+	//Sucursals
+	Route::post('sucursals/store', 'SucursalController@store')->name('sucursals.store')
 		->middleware('can:sucursals.create');
 
-	Route::get('sucursals', 'SucursalController@index')->name('sucursals.index')
+	Route::get('sprint1/sucursals', 'SucursalController@index')->name('sucursals.index')
 		->middleware('can:sucursals.index');
 
 	Route::get('sucursals/create', 'SucursalController@create')->name('sucursals.create')
@@ -102,7 +107,7 @@ Route::middleware(['auth'])->group(function () {
 	Route::put('sucursals/{sucursal}', 'SucursalController@update')->name('sucursals.update')
 		->middleware('can:sucursals.edit');
 
-	Route::get('sucursals/{sucursal}', 'SucursalController@show')->name('sucursals.show')
+	Route::get('sprint1/sucursals/{sucursal}', 'SucursalController@show')->name('sucursals.show')
 		->middleware('can:sucursals.show');
 
 	Route::delete('sucursals/{sucursal}', 'SucursalController@destroy')->name('sucursals.destroy')
@@ -113,66 +118,43 @@ Route::middleware(['auth'])->group(function () {
 
 		
 	
-				//almacens
+	//almacens
 	Route::post('almacens/store', 'AlmacenController@store')->name('almacens.store')
 	->middleware('can:almacens.create');
 
-Route::get('almacens', 'AlmacenController@index')->name('almacens.index')
-	->middleware('can:almacens.index');
+	Route::get('sprint1/almacens', 'AlmacenController@index')->name('almacens.index')
+		->middleware('can:almacens.index');
 
-Route::get('almacens/create', 'AlmacenController@create')->name('almacens.create')
-	->middleware('can:almacens.create');
+	Route::get('almacens/create', 'AlmacenController@create')->name('almacens.create')
+		->middleware('can:almacens.create');
 
-Route::put('almacens/{almacen}', 'AlmacenController@update')->name('almacens.update')
-	->middleware('can:almacens.edit');
+	Route::put('almacens/{almacen}', 'AlmacenController@update')->name('almacens.update')
+		->middleware('can:almacens.edit');
 
-Route::get('almacens/{almacen}', 'AlmacenController@show')->name('almacens.show')
-	->middleware('can:almacens.show');
+	Route::get('sprint1/almacens/{almacen}', 'AlmacenController@show')->name('almacens.show')
+		->middleware('can:almacens.show');
 
-Route::delete('almacens/{almacen}', 'AlmacenController@destroy')->name('almacens.destroy')
-	->middleware('can:almacens.destroy');
+	Route::delete('almacens/{almacen}', 'AlmacenController@destroy')->name('almacens.destroy')
+		->middleware('can:almacens.destroy');
 
-Route::get('almacens/{almacen}/edit', 'AlmacenController@edit')->name('almacens.edit')
-	->middleware('can:almacens.edit');
+	Route::get('almacens/{almacen}/edit', 'AlmacenController@edit')->name('almacens.edit')
+		->middleware('can:almacens.edit');
 
 
-
-			//Products
-	Route::post('products/store', 'ProductController@store')->name('products.store')
-		->middleware('can:products.create');
-
-	Route::get('products', 'ProductController@index')->name('products.index')
-		->middleware('can:products.index');
-
-	Route::get('products/create', 'ProductController@create')->name('products.create')
-		->middleware('can:products.create');
-
-	Route::put('products/{product}', 'ProductController@update')->name('products.update')
-		->middleware('can:products.edit');
-
-	Route::get('products/{product}', 'ProductController@show')->name('products.show')
-		->middleware('can:products.show');
-
-	Route::delete('products/{product}', 'ProductController@destroy')->name('products.destroy')
-		->middleware('can:products.destroy');
-
-	Route::get('products/{product}/edit', 'ProductController@edit')->name('products.edit')
-		->middleware('can:products.edit');
-	
-		//departamento
+	//Departamento
 	Route::post('departamentos/store', 'DepartamentoController@store')->name('departamentos.store')
 		->middleware('can:departamentos.create');
 
-	Route::get('gestion-administrativa/departamentos', 'DepartamentoController@index')->name('departamentos.index')
-		->middleware('can:departamentos.index');
+	Route::get('sprint1/departamentos', 'DepartamentoController@index')->name('departamentos.index')
+		->middleware('can:products.index');
 
-	Route::get('gestion-administrativa/departamentos/create', 'DepartamentoController@create')->name('departamentos.create')
+	Route::get('sprint1/departamentos/create', 'DepartamentoController@create')->name('departamentos.create')
 		->middleware('can:departamentos.create');
 
 	Route::put('departamentos/{departamento}', 'DepartamentoController@update')->name('departamentos.update')
 		->middleware('can:departamentos.edit');
 
-	Route::get('gestion-administrativa/departamentos/{departamento}', 'DepartamentoController@show')->name('departamentos.show')
+	Route::get('sprint1/departamentos/{departamento}', 'DepartamentoController@show')->name('departamentos.show')
 		->middleware('can:departamentos.show');
 
 	Route::delete('departamentos/{departamento}', 'DepartamentoController@destroy')->name('departamentos.destroy')
@@ -183,7 +165,7 @@ Route::get('almacens/{almacen}/edit', 'AlmacenController@edit')->name('almacens.
 
 
     //Area
-    Route::get('gestion-administrativa/area', 'AreaController@index')->name('area.index')
+    Route::get('sprint1/area', 'AreaController@index')->name('area.index')
         ->middleware('can:area.index');
 
     Route::get('area/{area}', 'AreaController@show')->name('areas.show')
@@ -198,12 +180,111 @@ Route::get('almacens/{almacen}/edit', 'AlmacenController@edit')->name('almacens.
     Route::put('area/{area}', 'AreaController@update')->name('areas.update')
         ->middleware('can:area.edit');
 
-    Route::get('gestion-administrativa/area/create', 'AreaController@create')->name('areas.create')
+    Route::get('sprint1/area/create', 'AreaController@create')->name('areas.create')
         ->middleware('can:area.create');
 
     Route::post('area/store', 'AreaController@store')->name('areas.store')
-        ->middleware('can:area.create');
+		->middleware('can:area.create');
+		
+	//Estado
+	Route::resource('sprint1/estado','EstadoController')->name('estado','estado.index');
 
+	//Provincia
+	Route::resource('sprint1/provincia','ProvinciaController')->name('provincia','provincia.index');
+
+	//Municipio
+	Route::resource('sprint1/municipio','MunicipioController')->name('municipio','municipio.index');
+
+	//Cargo
+    Route::get('sprint1/cargos', 'CargoController@index')->name('cargos.index')
+        ->middleware('can:cargos.index');
+
+    Route::get('cargos/{cargos}', 'CargoController@show')->name('cargos.show')
+        ->middleware('can:materia_prima.show');
+
+    Route::get('cargos/{cargos}/edit', 'CargoController@edit')->name('cargos.edit')
+        ->middleware('can:cargos.edit');
+
+    Route::delete('cargos/{cargos}', 'CargoController@destroy')->name('cargos.destroy')
+        ->middleware('can:cargos.destroy');
+
+    Route::put('cargos/{cargos}', 'CargoController@update')->name('cargos.update')
+        ->middleware('can:cargos.edit');
+
+    Route::get('sprint1/cargos/create', 'CargoController@create')->name('cargos.create')
+        ->middleware('can:cargos.create');
+
+    Route::post('cargos/store', 'CargoController@store')->name('cargos.store')
+		->middleware('can:cargos.create');
+
+	//Empleado
+    Route::get('sprint1/empleado', 'EmpleadoController@index')->name('empleados.index')
+        ->middleware('can:empleado.index');
+
+    Route::get('empleado/{empleado}', 'EmpleadoController@show')->name('empleados.show')
+        ->middleware('can:materia_prima.show');
+
+    Route::get('empleado/{empleado}/edit', 'EmpleadoController@edit')->name('empleados.edit')
+        ->middleware('can:empleado.edit');
+
+    Route::delete('empleado/{empleado}', 'EmpleadoController@destroy')->name('empleados.destroy')
+        ->middleware('can:empleado.destroy');
+
+    Route::put('empleado/{empleado}', 'EmpleadoController@update')->name('empleados.update')
+        ->middleware('can:empleado.edit');
+
+    Route::get('sprint1/empleado/create', 'EmpleadoController@create')->name('empleados.create')
+        ->middleware('can:empleado.create');
+
+    Route::post('empleado/store', 'EmpleadoController@store')->name('empleados.store')
+		->middleware('can:empleado.create');
+
+	//Proveedor
+    Route::get('sprint2/proveedor', 'ProveedorController@index')->name('proveedores.index')
+        ->middleware('can:proveedor.index');
+
+    Route::get('proveedor/{proveedor}', 'ProveedorController@show')->name('proveedores.show')
+        ->middleware('can:proveedor.show');
+
+    Route::get('proveedor/{proveedor}/edit', 'ProveedorController@edit')->name('proveedores.edit')
+        ->middleware('can:proveedor.edit');
+
+    Route::delete('proveedor/{proveedor}/{tipo}', 'ProveedorController@destroy')->name('proveedores.destroy')
+        ->middleware('can:proveedor.destroy');
+
+    Route::put('proveedor/{proveedor}', 'ProveedorController@update')->name('proveedores.update')
+        ->middleware('can:proveedor.edit');
+
+    Route::get('sprint2/proveedor/create', 'ProveedorController@create')->name('proveedores.create')
+        ->middleware('can:proveedor.create');
+
+    Route::post('proveedor/store', 'ProveedorController@store')->name('proveedores.store')
+		->middleware('can:proveedor.create');
+	
+
+		
+	//Contacto
+    Route::get('sprint2/contacto', 'ContactoController@index')->name('contactos.index')
+        ->middleware('can:contacto.index');
+
+    Route::get('contacto/{contacto}', 'ContactoController@show')->name('contactos.show')
+        ->middleware('can:contacto.show');
+
+    Route::get('contacto/{contacto}/edit', 'ContactoController@edit')->name('contactos.edit')
+        ->middleware('can:contacto.edit');
+
+    Route::delete('contacto/{contacto}', 'ContactoController@destroy')->name('contactos.destroy')
+        ->middleware('can:contacto.destroy');
+
+    Route::put('contacto/{contacto}', 'ContactoController@update')->name('contactos.update')
+        ->middleware('can:contacto.edit');
+
+    Route::get('sprint2/contacto/create', 'ContactoController@create')->name('contactos.create')
+        ->middleware('can:contacto.create');
+
+    Route::post('contacto/store', 'ContactoController@store')->name('contactos.store')
+		->middleware('can:contacto.create');
+  
     //categorias
     Route::post('categorias/store', 'CategoriaController@store')->name('categorias.store')
         ->middleware('can:categorias.create');
@@ -293,9 +374,8 @@ Route::get('almacens/{almacen}/edit', 'AlmacenController@edit')->name('almacens.
     Route::get('articulos/{articulo}/edit', 'ArticuloController@edit')->name('articulos.edit')
         ->middleware('can:articulos.edit');
 
-
-
 });
+
 
 
 

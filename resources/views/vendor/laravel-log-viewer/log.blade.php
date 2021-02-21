@@ -1,6 +1,8 @@
-@extends('layouts.app')
+@extends('layouts.settings')
 
-@section('body-class', 'product-page')
+@section('title', 'Bitácora')
+
+@section('body-class', 'landing-page')
 
 @section('styles')
     <link rel="stylesheet"
@@ -10,15 +12,6 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css">
     
     <style>
-      .page-header{
-            min-height: 15vh !important;
-            background-position: center !important;
-        }
-
-      .main {
-        margin-top: 0px !important;
-        padding-top: 0vh !important;
-      }
 
       .fixed-top {
         position: absolute;
@@ -71,20 +64,67 @@
       .nowrap {
         white-space: nowrap;
       }
-        
+
+      #aside {
+        display: none;
+      }
+      #navbar {
+        display: none;
+      }
+
+      .container-fluid {
+        border: 1px solid #8888bb;
+        border-radius: 7pt;
+      }
+      .col-md-6 {
+        padding-top: 10px;
+      }
+      
     </style>
 @endsection
 
-@section('content')
-  <div class="page-header header-filter" style="background-image: url('{{ asset('img/fondo_header.png') }}');">
-  </div>
+@section('contenido-central')
 
-  <div class="main main-raised">
+  <div class="main ">
     <div class="container">
 
       <div class="section">
-          <div class="container-fluid">
-            <div class="row">
+        <nav id="barra">
+          <ul class="nav flex-row">
+            <li>
+              <a class="nav-link icon icon-primary" 
+              href="{{ route('settings') }}">Herramientas</a>
+            </li> 
+
+            <li>
+              <a class="nav-pills" href="{{ route('roles.index') }}">
+                <i class="material-icons icon icon-primary">fact_check</i>
+                Roles y permisos
+              </a>              
+            </li>
+            <li>
+              <a class="nav-pills" href="{{ route('bitacora') }}">
+                <i class="material-icons icon icon-success">list_alt</i>
+                Bitácora
+              </a>              
+            </li>
+            <li>
+              <a class="nav-pills" href="#">
+                <i class="material-icons icon icon-danger">manage_search</i>
+                Reportes
+              </a>              
+            </li>
+            <li>
+              <a class="nav-pills" href="">
+                <i class="material-icons icon icon-info">backup</i>
+                Backup
+              </a>              
+            </li>
+          </ul>
+        </nav>
+        <div class="container-fluid">
+        <br>
+          <div class="row ">
               <div class="col sidebar mb-3">
                 <h1><i class="fa fa-calendar" aria-hidden="true"></i> Lista de registros</h1>
                 <div class="list-group div-scroll">
@@ -113,84 +153,83 @@
                 @endforeach
               </div>
             </div>
-          <div class="col-10 table-container">
-              @if ($logs === null)
-                <div>
-                  Archivo log >50M, puede descargarlo.
-                </div>
-              @else
-                <table id="table-log" class="table table-striped" data-ordering-index="{{ $standardFormat ? 2 : 0 }}">
-                  <thead>
-                  <tr>
-                    @if ($standardFormat)
-                      <th>Nivel</th>
-                      <th>Contexto</th>
-                      <th>Fecha</th>
-                    @else
-                      <th>Número de línea</th>
-                    @endif
-                    <th>Descripción</th>
-                  </tr>
-                  </thead>
-                  <tbody>
-
-                  @foreach($logs as $key => $log)
-                    <tr data-display="stack{{{$key}}}">
+            <div class="col-9 table-container">
+                @if ($logs === null)
+                  <div>
+                    Archivo log >50M, puede descargarlo.
+                  </div>
+                @else
+                  <table id="table-log" class="table table-striped" data-ordering-index="{{ $standardFormat ? 2 : 0 }}">
+                    <thead>
+                    <tr>
                       @if ($standardFormat)
-                        <td class="nowrap text-{{{$log['level_class']}}}">
-                          <span class="fa fa-{{{$log['level_img']}}}" aria-hidden="true"></span>&nbsp;&nbsp;{{$log['level']}}
-                        </td>
-                        <td class="text">{{$log['context']}}</td>
+                        <th>Nivel</th>
+                        <th>Contexto</th>
+                        <th>Fecha</th>
+                      @else
+                        <th>Número de línea</th>
                       @endif
-                      <td class="date">{{{$log['date']}}}</td>
-                      <td class="text">
-                        @if ($log['stack'])
-                          <button type="button"
-                                  class="float-right expand btn btn-outline-dark btn-sm mb-2 ml-2"
-                                  data-display="stack{{{$key}}}">
-                            <span class="fa fa-search"></span>
-                          </button>
-                        @endif
-                        {{{$log['text']}}}
-                        @if (isset($log['in_file']))
-                          <br/>{{{$log['in_file']}}}
-                        @endif
-                        @if ($log['stack'])
-                          <div class="stack" id="stack{{{$key}}}"
-                              style="display: none; white-space: pre-wrap;">{{{ trim($log['stack']) }}}
-                          </div>
-                        @endif
-                      </td>
+                      <th>Descripción</th>
                     </tr>
-                  @endforeach
+                    </thead>
+                    <tbody>
 
-                  </tbody>
-                </table>
-              @endif
-              <div class="p-3">
-                @if($current_file)
-                  <a href="?dl={{ \Illuminate\Support\Facades\Crypt::encrypt($current_file) }}{{ ($current_folder) ? '&f=' . \Illuminate\Support\Facades\Crypt::encrypt($current_folder) : '' }}">
-                    <span class="fa fa-download"></span> Descargar Archivo
-                  </a>
-                  -
-                  <a id="clean-log" href="?clean={{ \Illuminate\Support\Facades\Crypt::encrypt($current_file) }}{{ ($current_folder) ? '&f=' . \Illuminate\Support\Facades\Crypt::encrypt($current_folder) : '' }}">
-                    <span class="fa fa-sync"></span> Limpiar Archivo
-                  </a>
-                  -
-                  <a id="delete-log" href="?del={{ \Illuminate\Support\Facades\Crypt::encrypt($current_file) }}{{ ($current_folder) ? '&f=' . \Illuminate\Support\Facades\Crypt::encrypt($current_folder) : '' }}">
-                    <span class="fa fa-trash"></span> Eliminar Archivo
-                  </a>
-                  @if(count($files) > 1)
-                    -
-                    <a id="delete-all-log" href="?delall=true{{ ($current_folder) ? '&f=' . \Illuminate\Support\Facades\Crypt::encrypt($current_folder) : '' }}">
-                      <span class="fa fa-trash-alt"></span> Eliminar todos los archivos
-                    </a>
-                  @endif
+                    @foreach($logs as $key => $log)
+                      <tr data-display="stack{{{$key}}}">
+                        @if ($standardFormat)
+                          <td class="nowrap text-{{{$log['level_class']}}}">
+                            <span class="fa fa-{{{$log['level_img']}}}" aria-hidden="true"></span>&nbsp;&nbsp;{{$log['level']}}
+                          </td>
+                          <td class="text">{{$log['context']}}</td>
+                        @endif
+                        <td class="date">{{{$log['date']}}}</td>
+                        <td class="text">
+                          @if ($log['stack'])
+                            <button type="button"
+                                    class="float-right expand btn btn-outline-dark btn-sm mb-2 ml-2"
+                                    data-display="stack{{{$key}}}">
+                              <span class="fa fa-search"></span>
+                            </button>
+                          @endif
+                          {{{$log['text']}}}
+                          @if (isset($log['in_file']))
+                            <br/>{{{$log['in_file']}}}
+                          @endif
+                          @if ($log['stack'])
+                            <div class="stack" id="stack{{{$key}}}"
+                                style="display: none; white-space: pre-wrap;">{{{ trim($log['stack']) }}}
+                            </div>
+                          @endif
+                        </td>
+                      </tr>
+                    @endforeach
+
+                    </tbody>
+                  </table>
                 @endif
+                <div class="p-3">
+                  @if($current_file)
+                    <a href="?dl={{ \Illuminate\Support\Facades\Crypt::encrypt($current_file) }}{{ ($current_folder) ? '&f=' . \Illuminate\Support\Facades\Crypt::encrypt($current_folder) : '' }}">
+                      <span class="fa fa-download"></span> Descargar Archivo
+                    </a>
+                    -
+                    <a id="clean-log" href="?clean={{ \Illuminate\Support\Facades\Crypt::encrypt($current_file) }}{{ ($current_folder) ? '&f=' . \Illuminate\Support\Facades\Crypt::encrypt($current_folder) : '' }}">
+                      <span class="fa fa-sync"></span> Limpiar Archivo
+                    </a>
+                    -
+                    <a id="delete-log" href="?del={{ \Illuminate\Support\Facades\Crypt::encrypt($current_file) }}{{ ($current_folder) ? '&f=' . \Illuminate\Support\Facades\Crypt::encrypt($current_folder) : '' }}">
+                      <span class="fa fa-trash"></span> Eliminar Archivo
+                    </a>
+                    @if(count($files) > 1)
+                      -
+                      <a id="delete-all-log" href="?delall=true{{ ($current_folder) ? '&f=' . \Illuminate\Support\Facades\Crypt::encrypt($current_folder) : '' }}">
+                        <span class="fa fa-trash-alt"></span> Eliminar todos los archivos
+                      </a>
+                    @endif
+                  @endif
+                </div>
               </div>
-            </div>
       </div>
-
     </div>
   </div>
 

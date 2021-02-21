@@ -1,6 +1,6 @@
-@extends('layouts.app')
+@extends('layouts.settings')
 
-@section('title', 'Bienvenido a ' . config('app.name'))
+@section('title', 'Editar rol')
 
 @section('body-class', 'landing-page')
 
@@ -16,7 +16,9 @@
             padding-left: 8px;
             padding-right: 8px;
             padding-bottom: 5px;
-            width: 50%;
+            width: auto;
+
+            margin-top: 0px !important;
         }
         ul {
             text-align: left !important;
@@ -25,13 +27,11 @@
     </style>
 @endsection
 
-@section('content')
+@section('contenido-central')
 <div class="main ">
     <div class="container">
 
         <div class="section">
-            <br>
-            <br>
 
             <div class="tarjeta">
             <div class="card card-nav-tabs text-center">
@@ -49,5 +49,4 @@
         
 </div>
 
-@include('includes.footer')
 @endsection

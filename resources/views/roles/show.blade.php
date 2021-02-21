@@ -1,6 +1,6 @@
-@extends('layouts.app')
+@extends('layouts.settings')
 
-@section('title', 'Bienvenido a ' . config('app.name'))
+@section('title', 'Rol ' . $role->name)
 
 @section('body-class', 'landing-page')
 
@@ -13,19 +13,17 @@
         }
         .card {
             
-            width: 50%;
+            width: 100%;
         }
 
     </style>
 @endsection
 
-@section('content')
+@section('contenido-central')
 <div class="main ">
     <div class="container">
 
         <div class="section">
-            <br>
-            <br>
 
             <div class="tarjeta">
             <div class="card card-nav-tabs text-center">

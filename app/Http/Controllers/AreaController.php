@@ -13,13 +13,13 @@ class AreaController extends Controller
     {
         $areas = Area::where('eliminado',false)->paginate();
 
-        return view('gestion-administrativa/area.index', compact('areas'));
+        return view('sprint1/area.index', compact('areas'));
     }
     public function create()
     {
         $departamentos = Departamento::all()->where('eliminado','=','false');
         $area = Area::first();
-        return view('gestion-administrativa/area.create', compact('departamentos'), compact('area'));
+        return view('sprint1/area.create', compact('departamentos'), compact('area'));
     }
     public function store(Request $request)
     {
@@ -33,14 +33,14 @@ class AreaController extends Controller
     {
         $area = Area::find($id);
         $departamentos = Departamento::all()->where('eliminado','=','false');
-        return view('gestion-administrativa/area.edit', compact('area'), compact('departamentos'));
+        return view('sprint1/area.edit', compact('area'), compact('departamentos'));
     }
 
 
     public function show($id)
     {
         $area = Area::find($id);
-        return view('gestion-administrativa/area.show', compact('area'));
+        return view('sprint1/area.show', compact('area'));
     }
 
     public function update(Request $request, $id)

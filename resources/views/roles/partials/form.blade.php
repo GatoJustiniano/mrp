@@ -1,17 +1,17 @@
 <div class="form-group">
-	{{ Form::label('name', 'Nombre ') }}
+	{{ Form::label('name', 'Nombre: ') }}
 	{{ Form::text('name', null, ['class' => 'form-control', 'id' => 'name']) }}
 </div>
 <div class="form-group">
-	{{ Form::label('slug', 'URL Amigable ') }}
+	{{ Form::label('slug', 'URL Amigable: ') }}
 	{{ Form::text('slug', null, ['class' => 'form-control', 'id' => 'slug']) }}
 </div>
 <div class="form-group">
-	{{ Form::label('description', 'Descripción ') }}
+	{{ Form::label('description', 'Descripción del rol: ') }}
 	{{ Form::text('description', null, ['class' => 'form-control', 'id' => 'description']) }}
 </div>
 <hr>
-<h3>Permiso Especial</h3>
+<h3>Tipo Permiso Especial</h3>
 <div class="form-group">
     <label> {{ Form::radio('special', 'all-access')}} Acceso total</label>
     <label> {{ Form::radio('special', 'no-access')}} Ningún acceso</label>

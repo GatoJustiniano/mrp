@@ -17,6 +17,11 @@
 
         .features {
             text-align: center !important;
+            padding-top: 0px !important;
+        }
+
+        .title {
+            margin-top: 0px !important;
         }
 
         .icon-primary:hover {
@@ -198,6 +203,10 @@
             width:100%;
             transition:800ms ease all;
         }
+
+        .info {
+            padding-top: 50px; 
+        }
         
     </style>
 @endsection
@@ -225,7 +234,7 @@
                     
                     <div class="col-md-4">
                         <div class="info">
-                            <a class="" href="{{ route('ges_adm') }}">
+                            <a class="" href="{{ route('sprint1') }}">
                                 <div class="icon icon-primary">
                                     <i class="material-icons">admin_panel_settings</i>
                                 </div>
@@ -282,11 +291,11 @@
 
                     <div class="col-md-4">
                         <div class="info">
-                            <a href="">
+                            <a href="{{ route('settings') }}">
                                 <div class="icon icon-rose">
                                     <i class="material-icons">settings_applications</i>
                                 </div>
-                                <h4 class="info-title">Producción</h4>
+                                <h4 class="info-title">Herramientas</h4>
                             </a>
                         </div>
                     </div>

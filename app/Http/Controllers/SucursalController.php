@@ -20,7 +20,7 @@ class SucursalController extends Controller
     {
         $sucursals = Sucursal::paginate();
 
-        return view('sucursals.index', compact('sucursals'));
+        return view('sprint1/sucursals.index', compact('sucursals'));
     }
 
     /**
@@ -35,7 +35,7 @@ class SucursalController extends Controller
        // $estados = Estado::orderBy('id_estado', 'desc')->pluck('tipo_estado', 'id_estado');
        $estados = Estado::all();
         //return view('sucursals.create');
-        return view('sucursals.create',compact('sucursal','estados'));
+        return view('sprint1/sucursals.create',compact('sucursal','estados'));
     }
 
     /**
@@ -63,7 +63,7 @@ class SucursalController extends Controller
     {
         $sucursal = Sucursal::find($id);
 
-        return view('sucursals.show', compact('sucursal'));
+        return view('sprint1/sucursals.show', compact('sucursal'));
     }
 
     /**
@@ -78,7 +78,7 @@ class SucursalController extends Controller
        // $estados = Estado::orderBy('id_estado', 'desc')->pluck('tipo_estado', 'id_estado');
         //return view('sucursals.create');
         $estados = Estado::all();
-        return view('sucursals.edit', compact('sucursal','estados'));
+        return view('sprint1/sucursals.edit', compact('sucursal','estados'));
     }
 
     /**

@@ -122,37 +122,43 @@
         <header class="">Sistema MRP</header>
         <ul class="nav flex-column">
           <li>
-            <a class="nav-link" href="{{ route('ges_adm') }}">Sprint 1</a>
+            <a class="nav-link" href="{{ route('sprint1') }}">Sprint 1</a>
             <ul class="nav flex-column">
                 <li><a class="nav-pills" href="{{ route('departamentos.index') }}">Departamento </a></li>
                 <li><a class="nav-pills" href="{{ route('area.index') }}">Área </a></li>
                 <li><a class="nav-pills" href="{{ route('sucursals.index') }}">Sucursal </a></li>
                 <li><a class="nav-pills" href="{{ route('almacens.index') }}">Almacén </a></li>
-                <li><a class="nav-pills" href="#">Cargo </a></li>
-                <li><a class="nav-pills" href="#">Empleado </a></li>
+                <li><a class="nav-pills" href="{{ route('municipio.index') }}">Municipio </a></li>
+                <li><a class="nav-pills" href="{{ route('provincia.index') }}">Provincia </a></li>
+                <li><a class="nav-pills" href="{{ route('estado.index') }}">Estado </a></li>
+                <li><a class="nav-pills" href="{{ route('cargos.index') }}">Cargo </a></li>
+                <li><a class="nav-pills" href="{{ route('empleados.index') }}">Empleado </a></li>
             </ul>
           </li> 
             <li>
-                <a class="nav-link" href="#">Nómina</a>
+                <a class="nav-link" href="{{ route('sprint2') }}">Sprint 2</a>
                 <ul class="nav flex-column">
-                <li><a class="nav-pills" href="#">Nómina </a></li>
+                <li><a class="nav-pills" href="{{ route('categorias.index') }}">Categoría </a></li>
+                <li><a class="nav-pills" href="{{ route('sub_categorias.index') }}">Sub Categoría </a></li>
+                <li><a class="nav-pills" href="{{ route('unidad_medidas.index') }}">Unidad de Medida </a></li>
+                <li><a class="nav-pills" href="{{ route('articulos.index') }}">Artículo </a></li>
+                <li><a class="nav-pills" href="{{ route('contactos.index') }}">Contacto </a></li>
+                <li><a class="nav-pills" href="{{ route('proveedores.index') }}">Proveedor </a></li>
                 </ul>
             </li>
             <li>
-              <a class="nav-link" href="{{ route('inventario') }}">Inventarios</a>
+              <a class="nav-link" href="{{ route('inventario') }}">Sprint 3</a>
                 <ul class="nav flex-column">
-                    <li><a class="nav-pills" href="#">Proveedor </a></li>
-                    <li><a class="nav-pills" href="#">Materia Prima </a></li>
-                    <li><a class="nav-pills" href="{{ route('articulos.index') }}">Articulo </a></li>
-                    <li><a class="nav-pills" href="{{ route('categorias.index') }}">Categoria </a></li>
-                    <li><a class="nav-pills" href="{{ route('sub_categorias.index') }}">Sub Categoria </a></li>
-                    <li><a class="nav-pills" href="{{ route('unidad_medidas.index') }}">Unidad de Medidas </a></li>
-                    <li><a class="nav-pills" href="#"> Mov Inventario </a></li>
+                    <li><a class="nav-pills" href="#">Cliente </a></li>
+                    <li><a class="nav-pills" href="#">Pedido </a></li>
+                    <li><a class="nav-pills" href="#">Venta </a></li>
+                    <li><a class="nav-pills" href="#">Compra </a></li>
+                    <li><a class="nav-pills" href="#">View Mov de inventario </a></li>
+                    <li><a class="nav-pills" href="#">View Ingresos </a></li>
+                    <li><a class="nav-pills" href="#">View Salidas </a></li>
+                    <li><a class="nav-pills" href="#">View Inventario </a></li>
                 </ul>
             </li>
-            <li>
-              <a class="nav-link" href="#Compras">Compras</a>
-            </li> 
             <li>
               <a class="nav-link" href="#Producción">Producción</a>
               <ul class="nav flex-column">
@@ -161,6 +167,9 @@
                 <li><a class="nav-pills" href="#">MRP </a></li>
                 </ul>
             </li> 
+            <li>
+              <a class="nav-link" href="{{ route('settings') }}">Herramientas</a>
+            </li>
         </ul>
       </nav>
 

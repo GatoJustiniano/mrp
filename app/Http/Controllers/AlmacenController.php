@@ -18,7 +18,7 @@ class AlmacenController extends Controller
     {
         $almacens = Almacen::paginate();
 
-        return view('almacens.index', compact('almacens'));
+        return view('sprint1/almacens.index', compact('almacens'));
     }
 
     /**
@@ -33,7 +33,7 @@ class AlmacenController extends Controller
         $sucursals = Sucursal::all();
       //  $sucursals = Sucursal::orderBy('id', 'desc')->pluck('descripcion', 'id');
         //return view('sucursals.create');
-        return view('almacens.create',compact('almacen','sucursals'));
+        return view('sprint1/almacens.create',compact('almacen','sucursals'));
         //return view('almacens.create');
     }
 
@@ -62,7 +62,7 @@ class AlmacenController extends Controller
     {
         $almacen = Almacen::find($id);
 
-        return view('almacens.show', compact('almacen'));
+        return view('sprint1/almacens.show', compact('almacen'));
     }
 
     /**
@@ -75,7 +75,7 @@ class AlmacenController extends Controller
     {
         $almacen = Almacen::find($id);
         $sucursals = Sucursal::all();
-        return view('almacens.edit', compact('almacen','sucursals'));
+        return view('sprint1/almacens.edit', compact('almacen','sucursals'));
     }
 
     /**

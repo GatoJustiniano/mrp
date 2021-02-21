@@ -1,6 +1,6 @@
-@extends('layouts.app')
+@extends('layouts.settings')
 
-@section('title', 'Bienvenido a ' . config('app.name'))
+@section('title', 'Roles y permisos')
 
 @section('body-class', 'landing-page')
 
@@ -16,7 +16,7 @@
     </style>
 @endsection
 
-@section('content')
+@section('contenido-central')
 <div class="main ">
     <div class="container">
 
@@ -24,7 +24,7 @@
             <h2 class="title text-center">Roles
                 @can('roles.create')
                     <a href="{{ route('roles.create') }}" 
-                    class="btn btn-sm btn-primary pull-right">
+                    class="btn btn-sm btn-success pull-right">
                         Crear Nuevo Rol
                     </a>
                 @endcan
@@ -52,7 +52,7 @@
                                 @can('roles.show')
                                 <td width="10px">
                                     <a href="{{ route('roles.show', $role->id) }}" 
-                                    class="btn btn-sm btn-default">
+                                    class="btn btn-sm btn-info">
                                         ver
                                     </a>
                                 </td>
@@ -60,7 +60,7 @@
                                 @can('roles.edit')
                                 <td width="10px">
                                     <a href="{{ route('roles.edit', $role->id) }}" 
-                                    class="btn btn-sm btn-default">
+                                    class="btn btn-sm btn-warning">
                                         editar
                                     </a>
                                 </td>

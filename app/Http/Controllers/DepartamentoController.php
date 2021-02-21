@@ -14,7 +14,7 @@ class DepartamentoController extends Controller
     {
         $departamentos = Departamento::where('eliminado',false)->paginate();
 
-        return view('gestion-administrativa/departamentos.index', compact('departamentos'));
+        return view('sprint1/departamentos.index', compact('departamentos'));
     }
 
     /**
@@ -24,7 +24,7 @@ class DepartamentoController extends Controller
      */
     public function create()
     {
-        return view('gestion-administrativa/departamentos.create');
+        return view('sprint1/departamentos.create');
     }
 
     /**
@@ -51,7 +51,7 @@ class DepartamentoController extends Controller
     {
         $departamento = Departamento::find($id);
 
-        return view('gestion-administrativa/departamentos.show', compact('departamento'));
+        return view('sprint1/departamentos.show', compact('departamento'));
     }
 
     /**
@@ -64,7 +64,7 @@ class DepartamentoController extends Controller
     {
         $departamento = Departamento::find($id);
 
-        return view('gestion-administrativa/departamentos.edit', compact('departamento'));
+        return view('sprint1/departamentos.edit', compact('departamento'));
     }
 
     /**
