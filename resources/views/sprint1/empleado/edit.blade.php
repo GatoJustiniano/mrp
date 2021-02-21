@@ -10,6 +10,12 @@
         .tarjeta {
             justify-content: center !important;
         }
+        .card-crud {
+            width:100% !important;
+        }
+        .bmd-label-static {
+            padding-left: 1rem;
+        }
 
     </style>
 @endsection

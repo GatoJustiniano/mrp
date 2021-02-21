@@ -27,7 +27,7 @@
             <h2 class="title text-center">Sub Categoria
                 @can('areas.create')
                     <a href="{{ route('sub_categorias.create') }}"
-                    class="btn btn-sm btn-primary pull-right">
+                    class="btn btn-sm btn-success pull-right">
                         Crear Nueva Sub Categoria
                     </a>
                 @endcan
@@ -55,7 +55,7 @@
                                 @can('sub_categorias.show')
                                 <td width="10px">
                                     <a href="{{ route('sub_categorias.show', $sub_categoria->id) }}"
-                                    class="btn btn-sm btn-default">
+                                    class="btn btn-sm btn-info">
                                         ver
                                     </a>
                                 </td>
@@ -63,7 +63,7 @@
                                 @can('sub_categorias.edit')
                                 <td width="10px">
                                     <a href="{{ route('sub_categorias.edit', $sub_categoria->id) }}"
-                                    class="btn btn-sm btn-default">
+                                    class="btn btn-sm btn-warning">
                                         editar
                                     </a>
                                 </td>

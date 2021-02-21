@@ -24,7 +24,7 @@
             <h2 class="title text-center">Unidad de Medida
                 @can('unidad_medidas.create')
                     <a href="{{ route('unidad_medidas.create') }}"
-                    class="btn btn-sm btn-primary pull-right">
+                    class="btn btn-sm btn-success pull-right">
                         Crear Nueva Unidad de Medida
                     </a>
                 @endcan
@@ -50,7 +50,7 @@
                                 @can('unidad_medidas.show')
                                 <td width="10px">
                                     <a href="{{ route('unidad_medidas.show', $unidad_medida->id) }}"
-                                    class="btn btn-sm btn-default">
+                                    class="btn btn-sm btn-info">
                                         ver
                                     </a>
                                 </td>
@@ -58,7 +58,7 @@
                                 @can('unidad_medidas.edit')
                                 <td width="10px">
                                     <a href="{{ route('unidad_medidas.edit', $unidad_medida->id) }}"
-                                    class="btn btn-sm btn-default">
+                                    class="btn btn-sm btn-warning">
                                         editar
                                     </a>
                                 </td>

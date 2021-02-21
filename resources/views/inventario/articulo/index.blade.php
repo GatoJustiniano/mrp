@@ -27,7 +27,7 @@
             <h2 class="title text-center">Articulo
                 @can('articulos.create')
                     <a href="{{ route('articulos.create') }}"
-                    class="btn btn-sm btn-primary pull-right">
+                    class="btn btn-sm btn-success pull-right">
                         Crear Nuevo Articulo
                     </a>
                 @endcan
@@ -67,7 +67,7 @@
                                 @can('articulos.show')
                                 <td width="10px">
                                     <a href="{{ route('articulos.show', $articulo->id) }}"
-                                    class="btn btn-sm btn-default">
+                                    class="btn btn-sm btn-info">
                                         ver
                                     </a>
                                 </td>
@@ -75,7 +75,7 @@
                                 @can('articulos.edit')
                                 <td width="10px">
                                     <a href="{{ route('articulos.edit', $articulo->id) }}"
-                                    class="btn btn-sm btn-default">
+                                    class="btn btn-sm btn-warning">
                                         editar
                                     </a>
                                 </td>

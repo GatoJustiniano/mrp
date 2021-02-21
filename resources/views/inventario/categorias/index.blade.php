@@ -24,7 +24,7 @@
             <h2 class="title text-center">Categorias
                 @can('departamentos.create')
                     <a href="{{ route('categorias.create') }}"
-                    class="btn btn-sm btn-primary pull-right">
+                    class="btn btn-sm btn-success pull-right">
                         Crear Nueva Categoria
                     </a>
                 @endcan
@@ -48,7 +48,7 @@
                                 @can('categorias.show')
                                 <td width="10px">
                                     <a href="{{ route('categorias.show', $categoria->id) }}"
-                                    class="btn btn-sm btn-default">
+                                    class="btn btn-sm btn-info">
                                         ver
                                     </a>
                                 </td>
@@ -56,7 +56,7 @@
                                 @can('categorias.edit')
                                 <td width="10px">
                                     <a href="{{ route('categorias.edit', $categoria->id) }}"
-                                    class="btn btn-sm btn-default">
+                                    class="btn btn-sm btn-warning">
                                         editar
                                     </a>
                                 </td>
