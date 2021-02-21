@@ -62,6 +62,8 @@ class ProveedorController extends Controller
     public function store(Request $request)
     {
         $proveedor = Proveedor::create($request->all());
+        $mensaje   = $proveedor;
+        Log::info( 'IP DEL CLIENTE:'. $ip['REMOTE_ADDR'] . ' CLIENTE: '. $user->name . ' DESDE NAVEGADOR:'.$ip['HTTP_USER_AGENT'] . ' DESCRIPCIÓN: Proveedor creado, id: ' .$mensaje->id . ', Nombre: ' . $mensaje->nombre . ' ' );
 
         return redirect()->route('proveedores.show', $proveedor->id)
             ->with('info', 'Proveedor guardado con éxito');
@@ -105,6 +107,8 @@ class ProveedorController extends Controller
         $municipios     = Municipio::orderBy('nombre', 'asc')->get();
         $estados        = Estado::orderBy('nombre', 'asc')->get();
 
+        $mensaje    = $proveedor;
+        Log::info( 'IP DEL CLIENTE:'. $ip['REMOTE_ADDR'] . ' CLIENTE: '. $user->name . ' DESDE NAVEGADOR:'.$ip['HTTP_USER_AGENT'] . ' DESCRIPCIÓN: Proveedor editado, id: ' .$mensaje->id . ', Nombre: ' . $mensaje->nombre . ' ' );
         return view('sprint2/proveedor.edit', compact('proveedor','municipios','estados'));
     }
 
@@ -142,6 +146,9 @@ class ProveedorController extends Controller
      */
     public function destroy($id,$tipo)
     {
+        $ip = request()->server();
+        $user =auth()->user();
+
         $proveedor = Proveedor::find($id);
 
         $mensaje = Proveedor::find($id);
@@ -151,7 +158,8 @@ class ProveedorController extends Controller
         if($tipo === $darBaja){
             //si es 200 de da de baja
             $proveedor->estado = false;
-            Log::info( 'Proveedor dado de baja: ' .$mensaje->id . ' ' . $mensaje->nombre . ' ' . $mensaje->codigo );
+            Log::info( 'IP DEL CLIENTE:'. $ip['REMOTE_ADDR'] . ' CLIENTE: '. $user->name . ' DESDE NAVEGADOR:'.$ip['HTTP_USER_AGENT'] . ' DESCRIPCIÓN: Proveedor dado de baja, id: ' .$mensaje->id . ', Nombre: ' . $mensaje->nombre . ' ' );
+            
             $proveedor->save();
 
             return back()->with('info', 'Dado de baja correctamente');
@@ -159,7 +167,7 @@ class ProveedorController extends Controller
         if($tipo === $darAlta){
             //si es 400 dar Alta
             $proveedor->estado = true;
-            Log::info( 'Proveedor dado de alta: ' .$mensaje->id . ' ' . $mensaje->nombre . ' ' . $mensaje->codigo );
+            Log::info( 'IP DEL CLIENTE:'. $ip['REMOTE_ADDR'] . ' CLIENTE: '. $user->name . ' DESDE NAVEGADOR:'.$ip['HTTP_USER_AGENT'] . ' DESCRIPCIÓN: Proveedor dado de alta, id: ' .$mensaje->id . ', Nombre: ' . $mensaje->nombre . ' ' );
             $proveedor->save();
 
             return back()->with('info', 'Dado de alta correctamente');
@@ -171,7 +179,7 @@ class ProveedorController extends Controller
             //Cambia el estado eliminado de las areas dependientes de este proveedor
             //DB::table('areas')->where('departamento_id',$proveedor->id)->update(['eliminado'=>true]);
 
-            Log::info( 'Proveedor eliminado: ' .$mensaje->id . ' ' . $mensaje->nombre . ' ' . $mensaje->codigo );
+            Log::info( 'IP DEL CLIENTE:'. $ip['REMOTE_ADDR'] . ' CLIENTE: '. $user->name . ' DESDE NAVEGADOR:'.$ip['HTTP_USER_AGENT'] . ' DESCRIPCIÓN: Proveedor eliminado, id: ' .$mensaje->id . ', Nombre: ' . $mensaje->nombre . ' ' );
             $proveedor->save();
 
             return back()->with('info', 'Eliminado correctamente');
