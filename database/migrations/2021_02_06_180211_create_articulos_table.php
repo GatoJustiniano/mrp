@@ -26,9 +26,6 @@ class CreateArticulosTable extends Migration
             $table->float('precio_venta');
             //Fk
             $table->unsignedBigInteger('tipo');
-            //Fk
-            $table->unsignedBigInteger('estado');
-            $table->foreign('estado')->references('id')->on('estados');
             //FK
             $table->unsignedBigInteger('sub_categoria_id');
             $table->foreign('sub_categoria_id')->references('id')->on('sub_categorias');

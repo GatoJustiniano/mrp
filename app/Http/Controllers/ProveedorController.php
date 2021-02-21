@@ -3,9 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
-class ProveedorController extends Controller
-{
 use App\Proveedor;
 
 use App\Estado;
@@ -35,7 +32,7 @@ class ProveedorController extends Controller
                  'municipio.nombre as municipio'
                 )
         ->orderBy('codigo')
-        ->where('proveedors.eliminado',1)
+        ->where('proveedors.eliminado',0)
         ->paginate(15);
 
         return view('sprint2/proveedor.index', compact('proveedores'));
@@ -177,7 +174,7 @@ class ProveedorController extends Controller
         }
         if($tipo === $eliminado){
             //si es 400 de cambia el eliminado
-            $proveedor->eliminado = false;
+            $proveedor->eliminado = true;
 
             //Cambia el estado eliminado de las areas dependientes de este proveedor
             //DB::table('areas')->where('departamento_id',$proveedor->id)->update(['eliminado'=>true]);
