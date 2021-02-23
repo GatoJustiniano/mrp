@@ -173,7 +173,7 @@
         </ul>
       </nav>
 
-      <aside id="aside">aside</aside>
+      <aside id="aside">Publicidad</aside>
    </div>
 
   

@@ -61,6 +61,9 @@ class ProveedorController extends Controller
      */
     public function store(Request $request)
     {
+        $ip = request()->server();
+        $user =auth()->user();
+
         $proveedor = Proveedor::create($request->all());
         $mensaje   = $proveedor;
         Log::info( 'IP DEL CLIENTE:'. $ip['REMOTE_ADDR'] . ' CLIENTE: '. $user->name . ' DESDE NAVEGADOR:'.$ip['HTTP_USER_AGENT'] . ' DESCRIPCIÓN: Proveedor creado, id: ' .$mensaje->id . ', Nombre: ' . $mensaje->nombre . ' ' );
@@ -94,6 +97,9 @@ class ProveedorController extends Controller
      */
     public function edit($id)
     {
+        $ip = request()->server();
+        $user =auth()->user();
+
         $proveedor = DB::table('proveedors')
         ->join('municipio', 'municipio.id', '=', 'id_municipio')
         ->join('provincia', 'provincia.id', '=', 'municipio.id_provincia')
