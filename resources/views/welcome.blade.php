@@ -28,8 +28,8 @@
                 <h1 class="title">Bienvenido a Sistema {{ config('app.name') }}.</h1>
                 <h4>Permite realizar el control y la coordinación de los materiales.</h4>
                 <br />
-                <a href="#" class="btn btn-danger btn-raised btn-lg">
-                    <i class="fa fa-play"></i> ¿Cómo funciona?
+                <a href="#ingresar" class="btn btn-danger btn-raised btn-lg">
+                    <i class="fa fa-address-card"></i> Deseas probar nuestro sistema?
                 </a>
             </div>
         </div>
@@ -80,7 +80,7 @@
         </div>
 
 
-        <div class="section section-contacts">
+        <div class="section section-contacts" id="ingresar">
             <div class="row">
                 <div class="col-md-8 ml-auto mr-auto">
                     <h2 class="text-center title">¿Quieres probar nuestro sistema MRP?</h2>

@@ -6,13 +6,20 @@ use Illuminate\Http\Request;
 use App\Departamento;
 use App\Area;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\DB;
 
 class AreaController extends Controller
 {
     public function index()
     {
-        $areas = Area::where('eliminado',false)->paginate();
-
+        $areas = DB::table('areas')
+        ->join('departamentos', 'departamentos.id', '=', 'departamento_id')
+        ->select('areas.*',
+                 'departamentos.nombre as departamento'
+                )
+        ->orderBy('areas.codigo')
+        ->where('areas.eliminado',0)
+        ->paginate(15);
         return view('sprint1/area.index', compact('areas'));
     }
     public function create()

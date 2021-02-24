@@ -13,8 +13,8 @@
               </a>
             </li>
             <li>
-              <a href="#">
-                Publicaciones
+              <a href="{{ url('/home') }}">
+                Home
               </a>
             </li>
           </ul>

@@ -38,7 +38,7 @@
                                 <th width="10px">ID</th>
                                 <th>Codigo</th>
                                 <th>Descripción</th>
-                                <th>sucursal</th>
+                                <th>Sucursal</th>
                                 <th colspan="3">&nbsp;</th>
                             </tr>
                         </thead>

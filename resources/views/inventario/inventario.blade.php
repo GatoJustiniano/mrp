@@ -20,7 +20,7 @@
 <div class="row">
   <div class="col-md-3">
       <div class="info">
-          <a class="" href="#">
+          <a class="" href="{{ route('proveedores.index') }}">
               <div class="icon icon-primary">
                   <i class="material-icons">apartment</i>
               </div>
@@ -42,7 +42,7 @@
 
   <div class="col-md-3">
       <div class="info">
-          <a href="#">
+          <a href="{{ route('articulos.index') }}">
               <div class="icon icon-danger">
                   <i class="material-icons">satellite</i>
               </div>
@@ -53,7 +53,7 @@
 
   <div class="col-md-3">
       <div class="info">
-          <a href="#">
+          <a href="{{ route('almacens.index') }}">
               <div class="icon icon-info">
                   <i class="material-icons">account_balance</i>
               </div>

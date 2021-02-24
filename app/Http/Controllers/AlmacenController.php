@@ -29,12 +29,8 @@ class AlmacenController extends Controller
     public function create()
     {
         $almacen = Almacen::first();
-        // $estados = Estado::orderBy('id_estado', 'desc')->pluck('tipo_estado', 'id_estado');
         $sucursals = Sucursal::all();
-      //  $sucursals = Sucursal::orderBy('id', 'desc')->pluck('descripcion', 'id');
-        //return view('sucursals.create');
         return view('sprint1/almacens.create',compact('almacen','sucursals'));
-        //return view('almacens.create');
     }
 
     /**
@@ -49,7 +45,7 @@ class AlmacenController extends Controller
         $sucursals = Sucursal::all();
 
         return redirect()->route('almacens.index', $almacen->id)
-            ->with('info', 'Rol guardado con éxito');
+            ->with('info', 'Almacén guardado con éxito');
     }
 
     /**
@@ -94,7 +90,7 @@ class AlmacenController extends Controller
         $almacen->save();
 
         return redirect()->route('almacens.edit', $almacen->id)
-            ->with('info', 'Rol guardado con éxito');
+            ->with('info', 'Almacén guardado con éxito');
     }
 
     /**
@@ -108,7 +104,7 @@ class AlmacenController extends Controller
         $mensaje = Almacen::find($id);
         $almacen = Almacen::find($id)->delete();
         
-        Log::info( 'Producto eliminado: ' .$mensaje->id . ' ' . $mensaje->name . ' ' . $mensaje->description );
+        Log::info( 'Producto eliminado: ' .$mensaje->id . ' ' . $mensaje->decripcion . ' ' . $mensaje->codigo );
         return back()->with('info', 'Eliminado correctamente');
     }
 }

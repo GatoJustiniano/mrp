@@ -109,7 +109,6 @@ class EmpleadoController extends Controller
         $empleado->nombre = $request->input('nombre');
         $empleado->direccion = $request->input('direccion');
         $empleado->email = $request->input('email');
-        $empleado->edad = $request->input('edad');
         $empleado->fecha_nac = $request->input('fecha_nac');
         $empleado->telefono = $request->input('telefono');
         $empleado->foto = $request->input('foto');

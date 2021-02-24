@@ -38,8 +38,8 @@
                                 <th width="10px">ID</th>
                                 <th>Código</th>
                                 <th>Nombre Area</th>
-                                <th>Estado</th>
                                 <th>Departamento</th>
+                                <th>Estado</th>
                                 <th colspan="3">&nbsp;</th>
                             </tr>
                         </thead>
@@ -50,14 +50,14 @@
                                 <td>{{ $area->codigo }}</td>
                                 <td>{{ $area->nombre }}</td>
                                 <td>
+                                    {{$area->departamento}}
+                                </td>
+                                <td>
                                 @if($area->estado == 1)
                                     Activo
                                 @else
                                     Inactivo
                                 @endif
-                                </td>
-                                <td>
-                                {{ $area->departamento_id}}
                                 </td>
                                 @can('areas.show')
                                 <td width="10px">
