@@ -11,7 +11,7 @@ class SubCategoriaController extends Controller
 {
     public function index()
     {
-        $sub_categorias = SubCategoria::where('eliminado',false)->paginate();
+        $sub_categorias = SubCategoria::where('eliminado',false)->paginate(3);
 
         return view('inventario/sub_categoria.index', compact('sub_categorias'));
     }

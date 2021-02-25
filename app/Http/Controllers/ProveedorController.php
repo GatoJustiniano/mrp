@@ -33,7 +33,7 @@ class ProveedorController extends Controller
                 )
         ->orderBy('codigo')
         ->where('proveedors.eliminado',0)
-        ->paginate(15);
+        ->paginate(5);
 
         return view('sprint2/proveedor.index', compact('proveedores'));
     }

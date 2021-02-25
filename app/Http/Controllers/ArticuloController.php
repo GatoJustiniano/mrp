@@ -29,12 +29,16 @@ class ArticuloController extends Controller
 
     public function store(Request $request)
     {
+        $ip = request()->server();
+        $user =auth()->user();
 
         /*$imageName = $_FILES['imagen']['name'];
         $file = $request->file('imagen');
         $file->move(public_path('imagenes'), $imageName);
         $request["imagen"]=$imageName;*/
         $articulo = Articulo::create($request->all());
+        $mensaje   = $articulo;
+        Log::info( 'IP DEL CLIENTE:'. $ip['REMOTE_ADDR'] . ' CLIENTE: '. $user->name . ' DESDE NAVEGADOR:'.$ip['HTTP_USER_AGENT'] . ' DESCRIPCIÓN: Artículo creado, id: ' .$mensaje->id . ', Nombre: ' . $mensaje->nombre . ' ' );
 
 
         return redirect()->route('articulos.edit', $articulo->id )
@@ -43,10 +47,17 @@ class ArticuloController extends Controller
 
     public function edit($id)
     {
+        $ip = request()->server();
+        $user =auth()->user();
+
         $articulo = Articulo::find($id);
         $sub_categorias = SubCategoria::all()->where('eliminado','=','false');
         $unidad_medidas = UnidadMedida::all()->where('eliminado','=','false');
         $proveedors = Proveedor::all()->where('eliminado','=','false');
+
+        $mensaje    = $articulo;
+        Log::info( 'IP DEL CLIENTE:'. $ip['REMOTE_ADDR'] . ' CLIENTE: '. $user->name . ' DESDE NAVEGADOR:'.$ip['HTTP_USER_AGENT'] . ' DESCRIPCIÓN: Artículo editado, id: ' .$mensaje->id . ', Nombre: ' . $mensaje->nombre . ' ' );
+        
         return view('inventario/articulo.edit',  compact('articulo', 'sub_categorias'), compact('unidad_medidas', 'proveedors'));
     }
 
