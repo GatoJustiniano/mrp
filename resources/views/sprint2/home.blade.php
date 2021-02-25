@@ -42,7 +42,7 @@
 
   <div class="col-md-3">
       <div class="info">
-          <a href="#">
+          <a href="{{route('articulos.index')}}">
               <div class="icon icon-danger">
                   <i class="material-icons">satellite</i>
               </div>
@@ -53,7 +53,7 @@
   
   <div class="col-md-3">
       <div class="info">
-          <a href="#">
+          <a href="{{route('categorias.index')}}">
               <div class="icon icon-warning">
                   <i class="material-icons">assignment_late</i>
               </div>
@@ -64,7 +64,7 @@
 
   <div class="col-md-3">
       <div class="info">
-          <a href="#">
+          <a href="{{route('sub_categorias.index')}}">
               <div class="icon icon-info">
                   <i class="material-icons">person</i>
               </div>

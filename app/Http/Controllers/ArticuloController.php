@@ -30,14 +30,10 @@ class ArticuloController extends Controller
     public function store(Request $request)
     {
 
-
-
-
-
-        $imageName = $_FILES['imagen']['name'];
+        /*$imageName = $_FILES['imagen']['name'];
         $file = $request->file('imagen');
         $file->move(public_path('imagenes'), $imageName);
-        $request["imagen"]=$imageName;
+        $request["imagen"]=$imageName;*/
         $articulo = Articulo::create($request->all());
 
 
@@ -89,7 +85,7 @@ class ArticuloController extends Controller
         $articulo->eliminado= true;
         $articulo->save();
 
-        Log::info( 'Articulo eliminada: ' .$mensaje->id . ' ' . $mensaje->nombre  );
+        Log::info( 'Articulo eliminado: ' .$mensaje->id . ' ' . $mensaje->nombre  );
         return back()->with('info', 'Eliminado correctamente');
     }
 

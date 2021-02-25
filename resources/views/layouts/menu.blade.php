@@ -125,7 +125,7 @@
             <a class="nav-link" href="{{ route('sprint1') }}">Sprint 1</a>
             <ul class="nav flex-column">
                 <li><a class="nav-pills" href="{{ route('departamentos.index') }}">Departamento </a></li>
-                <li><a class="nav-pills" href="{{ route('area.index') }}">Área </a></li>
+                <li><a class="nav-pills" href="{{ route('areas.index') }}">Área </a></li>
                 <li><a class="nav-pills" href="{{ route('sucursals.index') }}">Sucursal </a></li>
                 <li><a class="nav-pills" href="{{ route('almacens.index') }}">Almacén </a></li>
                 <li><a class="nav-pills" href="{{ route('municipio.index') }}">Municipio </a></li>

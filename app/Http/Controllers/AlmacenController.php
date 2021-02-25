@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Almacen;
 use App\Sucursal;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\DB;
 
 class AlmacenController extends Controller
 {
@@ -16,7 +17,13 @@ class AlmacenController extends Controller
      */
     public function index()
     {
-        $almacens = Almacen::paginate();
+        $almacens = DB::table('almacens')
+        ->join('sucursals', 'sucursals.id', '=', 'sucursal')
+        ->select('almacens.*',
+                 'sucursals.descripcion as nombresucursal'
+                )
+        ->orderBy('almacens.codigo')
+        ->paginate(10);
 
         return view('sprint1/almacens.index', compact('almacens'));
     }

@@ -48,7 +48,7 @@
                                 <td>{{ $almacen->id }}</td>
                                 <td>{{ $almacen->codigo }}</td>
                                 <td>{{ $almacen->descripcion }}</td>
-                                <td>{{ $almacen->sucursal }}</td>
+                                <td>{{ $almacen->nombresucursal }}</td>
                                 @can('almacens.show')
                                 <td width="10px">
                                     <a href="{{ route('almacens.show', $almacen->id) }}" 

@@ -146,7 +146,7 @@ Route::middleware(['auth'])->group(function () {
 		->middleware('can:departamentos.create');
 
 	Route::get('sprint1/departamentos', 'DepartamentoController@index')->name('departamentos.index')
-		->middleware('can:products.index');
+		->middleware('can:departamentos.index');
 
 	Route::get('sprint1/departamentos/create', 'DepartamentoController@create')->name('departamentos.create')
 		->middleware('can:departamentos.create');
@@ -165,26 +165,26 @@ Route::middleware(['auth'])->group(function () {
 
 
     //Area
-    Route::get('sprint1/area', 'AreaController@index')->name('area.index')
-        ->middleware('can:area.index');
+    Route::get('sprint1/area', 'AreaController@index')->name('areas.index')
+        ->middleware('can:areas.index');
 
     Route::get('area/{area}', 'AreaController@show')->name('areas.show')
-        ->middleware('can:materia_prima.show');
+        ->middleware('can:areas.show');
 
     Route::get('area/{area}/edit', 'AreaController@edit')->name('areas.edit')
-        ->middleware('can:area.edit');
+        ->middleware('can:areas.edit');
 
     Route::delete('area/{area}', 'AreaController@destroy')->name('areas.destroy')
-        ->middleware('can:area.destroy');
+        ->middleware('can:areas.destroy');
 
     Route::put('area/{area}', 'AreaController@update')->name('areas.update')
-        ->middleware('can:area.edit');
+        ->middleware('can:areas.edit');
 
     Route::get('sprint1/area/create', 'AreaController@create')->name('areas.create')
-        ->middleware('can:area.create');
+        ->middleware('can:areas.create');
 
     Route::post('area/store', 'AreaController@store')->name('areas.store')
-		->middleware('can:area.create');
+		->middleware('can:areas.create');
 		
 	//Estado
 	Route::resource('sprint1/estado','EstadoController')->name('estado','estado.index');
@@ -200,7 +200,7 @@ Route::middleware(['auth'])->group(function () {
         ->middleware('can:cargos.index');
 
     Route::get('cargos/{cargos}', 'CargoController@show')->name('cargos.show')
-        ->middleware('can:materia_prima.show');
+        ->middleware('can:cargos.show');
 
     Route::get('cargos/{cargos}/edit', 'CargoController@edit')->name('cargos.edit')
         ->middleware('can:cargos.edit');
@@ -219,71 +219,71 @@ Route::middleware(['auth'])->group(function () {
 
 	//Empleado
     Route::get('sprint1/empleado', 'EmpleadoController@index')->name('empleados.index')
-        ->middleware('can:empleado.index');
+        ->middleware('can:empleados.index');
 
     Route::get('empleado/{empleado}', 'EmpleadoController@show')->name('empleados.show')
-        ->middleware('can:materia_prima.show');
+        ->middleware('can:empleados.show');
 
     Route::get('empleado/{empleado}/edit', 'EmpleadoController@edit')->name('empleados.edit')
-        ->middleware('can:empleado.edit');
+        ->middleware('can:empleados.edit');
 
     Route::delete('empleado/{empleado}', 'EmpleadoController@destroy')->name('empleados.destroy')
-        ->middleware('can:empleado.destroy');
+        ->middleware('can:empleados.destroy');
 
     Route::put('empleado/{empleado}', 'EmpleadoController@update')->name('empleados.update')
-        ->middleware('can:empleado.edit');
+        ->middleware('can:empleados.edit');
 
     Route::get('sprint1/empleado/create', 'EmpleadoController@create')->name('empleados.create')
-        ->middleware('can:empleado.create');
+        ->middleware('can:empleados.create');
 
     Route::post('empleado/store', 'EmpleadoController@store')->name('empleados.store')
-		->middleware('can:empleado.create');
+		->middleware('can:empleados.create');
 
 	//Proveedor
     Route::get('sprint2/proveedor', 'ProveedorController@index')->name('proveedores.index')
-        ->middleware('can:proveedor.index');
+        ->middleware('can:proveedores.index');
 
     Route::get('proveedor/{proveedor}', 'ProveedorController@show')->name('proveedores.show')
-        ->middleware('can:proveedor.show');
+        ->middleware('can:proveedores.show');
 
     Route::get('proveedor/{proveedor}/edit', 'ProveedorController@edit')->name('proveedores.edit')
-        ->middleware('can:proveedor.edit');
+        ->middleware('can:proveedores.edit');
 
     Route::delete('proveedor/{proveedor}/{tipo}', 'ProveedorController@destroy')->name('proveedores.destroy')
-        ->middleware('can:proveedor.destroy');
+        ->middleware('can:proveedores.destroy');
 
     Route::put('proveedor/{proveedor}', 'ProveedorController@update')->name('proveedores.update')
-        ->middleware('can:proveedor.edit');
+        ->middleware('can:proveedores.edit');
 
     Route::get('sprint2/proveedor/create', 'ProveedorController@create')->name('proveedores.create')
-        ->middleware('can:proveedor.create');
+        ->middleware('can:proveedores.create');
 
     Route::post('proveedor/store', 'ProveedorController@store')->name('proveedores.store')
-		->middleware('can:proveedor.create');
+		->middleware('can:proveedores.create');
 	
 
 		
 	//Contacto
     Route::get('sprint2/contacto', 'ContactoController@index')->name('contactos.index')
-        ->middleware('can:contacto.index');
+        ->middleware('can:contactos.index');
 
     Route::get('contacto/{contacto}', 'ContactoController@show')->name('contactos.show')
-        ->middleware('can:contacto.show');
+        ->middleware('can:contactos.show');
 
     Route::get('contacto/{contacto}/edit', 'ContactoController@edit')->name('contactos.edit')
-        ->middleware('can:contacto.edit');
+        ->middleware('can:contactos.edit');
 
     Route::delete('contacto/{contacto}', 'ContactoController@destroy')->name('contactos.destroy')
-        ->middleware('can:contacto.destroy');
+        ->middleware('can:contactos.destroy');
 
     Route::put('contacto/{contacto}', 'ContactoController@update')->name('contactos.update')
-        ->middleware('can:contacto.edit');
+        ->middleware('can:contactos.edit');
 
     Route::get('sprint2/contacto/create', 'ContactoController@create')->name('contactos.create')
-        ->middleware('can:contacto.create');
+        ->middleware('can:contactos.create');
 
     Route::post('contacto/store', 'ContactoController@store')->name('contactos.store')
-		->middleware('can:contacto.create');
+		->middleware('can:contactos.create');
   
     //categorias
     Route::post('categorias/store', 'CategoriaController@store')->name('categorias.store')

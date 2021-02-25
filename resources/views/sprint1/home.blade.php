@@ -31,7 +31,7 @@
 
   <div class="col-md-3">
       <div class="info">
-          <a class="" href="{{route('area.index')}}">
+          <a class="" href="{{route('areas.index')}}">
               <div class="icon icon-success">
                   <i class="material-icons">local_library</i>
               </div>
