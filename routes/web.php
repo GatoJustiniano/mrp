@@ -70,29 +70,6 @@ Route::middleware(['auth'])->group(function () {
 		->middleware('can:users.edit');
 	
 	
-	
-
-	//Products
-	Route::post('products/store', 'ProductController@store')->name('products.store')
-		->middleware('can:products.create');
-
-	Route::get('products', 'ProductController@index')->name('products.index')
-		->middleware('can:products.index');
-
-	Route::get('products/create', 'ProductController@create')->name('products.create')
-		->middleware('can:products.create');
-
-	Route::put('products/{product}', 'ProductController@update')->name('products.update')
-		->middleware('can:products.edit');
-
-	Route::get('products/{product}', 'ProductController@show')->name('products.show')
-		->middleware('can:products.show');
-
-	Route::delete('products/{product}', 'ProductController@destroy')->name('products.destroy')
-		->middleware('can:products.destroy');
-
-	Route::get('products/{product}/edit', 'ProductController@edit')->name('products.edit')
-		->middleware('can:products.edit');
 
 	//Sucursals
 	Route::post('sucursals/store', 'SucursalController@store')->name('sucursals.store')
