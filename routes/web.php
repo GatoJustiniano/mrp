@@ -351,6 +351,28 @@ Route::middleware(['auth'])->group(function () {
     Route::get('articulos/{articulo}/edit', 'ArticuloController@edit')->name('articulos.edit')
         ->middleware('can:articulos.edit');
 
+    //Cliente
+    Route::get('sprint3/cliente', 'ClienteController@index')->name('clientes.index')
+        ->middleware('can:clientes.index');
+
+    Route::get('cliente/{cliente}', 'ClienteController@show')->name('clientes.show')
+        ->middleware('can:clientes.show');
+
+    Route::get('cliente/{cliente}/edit', 'ClienteController@edit')->name('clientes.edit')
+        ->middleware('can:clientes.edit');
+
+    Route::delete('cliente/{cliente}/{tipo}', 'ClienteController@destroy')->name('clientes.destroy')
+        ->middleware('can:clientes.destroy');
+
+    Route::put('cliente/{cliente}', 'ClienteController@update')->name('clientes.update')
+        ->middleware('can:clientes.edit');
+
+    Route::get('sprint3/cliente/create', 'ClienteController@create')->name('clientes.create')
+        ->middleware('can:clientes.create');
+
+    Route::post('cliente/store', 'ClienteController@store')->name('clientes.store')
+		->middleware('can:clientes.create');
+
 });
 
 
