@@ -150,7 +150,7 @@
               <a class="nav-link" href="{{ route('inventario') }}">Sprint 3</a>
                 <ul class="nav flex-column">
                     <li><a class="nav-pills" href="{{ route('clientes.index') }}">Cliente </a></li>
-                    <li><a class="nav-pills" href="#">Pedido </a></li>
+                    <li><a class="nav-pills" href="{{ route('pedidos.index') }}">Pedido </a></li>
                     <li><a class="nav-pills" href="#">Venta </a></li>
                     <li><a class="nav-pills" href="#">Compra </a></li>
                     <li><a class="nav-pills" href="#">View Mov de inventario </a></li>

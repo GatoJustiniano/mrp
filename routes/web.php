@@ -371,7 +371,29 @@ Route::middleware(['auth'])->group(function () {
         ->middleware('can:clientes.create');
 
     Route::post('cliente/store', 'ClienteController@store')->name('clientes.store')
-		->middleware('can:clientes.create');
+        ->middleware('can:clientes.create');
+        
+    //Pedido
+    Route::get('sprint3/pedido', 'PedidoController@index')->name('pedidos.index')
+        ->middleware('can:pedidos.index');
+
+    Route::get('pedido/{pedido}', 'PedidoController@show')->name('pedidos.show')
+        ->middleware('can:pedidos.show');
+
+    Route::get('pedido/{pedido}/edit', 'PedidoController@edit')->name('pedidos.edit')
+        ->middleware('can:pedidos.edit');
+
+    Route::delete('pedido/{pedido}/{tipo}', 'PedidoController@destroy')->name('pedidos.destroy')
+        ->middleware('can:pedidos.destroy');
+
+    Route::put('pedido/{pedido}', 'PedidoController@update')->name('pedidos.update')
+        ->middleware('can:pedidos.edit');
+
+    Route::get('sprint3/pedido/create', 'PedidoController@create')->name('pedidos.create')
+        ->middleware('can:pedidos.create');
+
+    Route::post('pedido/store', 'PedidoController@store')->name('pedidos.store')
+		->middleware('can:pedidos.create');
 
 });
 
