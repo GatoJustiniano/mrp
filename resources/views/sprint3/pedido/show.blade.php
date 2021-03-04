@@ -15,37 +15,72 @@
 @endsection
 
 @section('contenido-central')
+<div class="card">
+
+
 <div class="card-group">
         <div class="card-title btn btn-info">
             Pedido
         </div>
         <div class="card">
             <span class="detalle">
-                <h6 class="item col-md-4">Número:</h6>
-                <p class="item col-md-8">{{ $pedido->numero }}</p>
+                <h6 class="item col-md">Número Pedido:</h6>
+                <p class="item col-md">{{ $pedido->numero }}</p>
+            </span>
+            
+            <span class="detalle">
+                <h6 class="item col-md">Identificación cliente:</h6>
+                <p class="item col-md">{{ $cliente->identificacion }}</p>
             </span>
             <span class="detalle">
-                <h6 class="item col-md-4">Fecha de Entrega:</h6>
-                <p class="item col-md-8">{{ $pedido->fecha_entrega }}</p>
+                <h6 class="item col-md">Código cliente:</h6>
+                <p class="item col-md">{{ $cliente->codigo }}</p>
             </span>
             <span class="detalle">
-                <h6 class="item col-md-4">Cliente solicitante:</h6>
-                <p class="item col-md-8">{{ $cliente->nombre }}</p>
+                <h6 class="item col-md">Nombre del cliente:</h6>
+                <p class="item col-md">{{ $cliente->nombre }}</p>
             </span>
             <span class="detalle">
-                <h6 class="item col-md-4">Promotor encargado:</h6>
-                <p class="item col-md-8">{{ $empleado->nombre }}</p>
+                <h6 class="item col-md">Fecha de Entrega:</h6>
+                <p class="item col-md">{{ $pedido->fecha_entrega }}</p>
             </span>
             <span class="detalle">
-                <h6 class="item col-md-4">Monto Total:</h6>
-                <p class="item col-md-8">{{ $pedido->monto_total }}</p>
+                <h6 class="item col-md">Tiempo:</h6>
+                <p class="item col-md">{{ $periodo}} días</p>
             </span>
             <span class="detalle">
-                <h6 class="item col-md-4">Observaciones:</h6>
-                <p class="item col-md-8">{{ $pedido->observaciones }}</p>
+                <h6 class="item col-md">Observaciones:</h6>
+                <p class="item col-md">{{ $pedido->observaciones }}</p>
             </span>
         </div>
         <div class="card">
+            <span class="detalle">
+                <h6 class="item col-md">Fecha Pedido:</h6>
+                <p class="item col-md">{{ $pedido->created_at->format('d-m-Y') }}</p>
+            </span>
+            <span class="detalle">
+                <h6 class="item col-md">Hora Pedido:</h6>
+                <p class="item col-md">{{ $pedido->created_at->format('H:i:s') }}</p>
+            </span>
+            <span class="detalle">
+                <h6 class="item col-md">Código promotor:</h6>
+                <p class="item col-md">{{ $empleado->codigo }}</p>
+            </span>
+            <span class="detalle">
+                <h6 class="item col-md">Nombre promotor:</h6>
+                <p class="item col-md">{{ $empleado->nombre }}</p>
+            </span>
+            <span class="detalle">
+                <h6 class="item col-md">Días restantes:</h6>
+                <p class="item col-md">{{ $dias}} días</p>
+            </span>
+            <span class="detalle">
+                <h6 class="item col-md">Monto total:</h6>
+                <p class="item col-md">{{ $pedido->monto_total}} BS.</p>
+            </span>
+
+
+
             <div class="card-footer">
                 <small class="text-muted">
                     @if($pedido->estado == 1)
@@ -58,9 +93,31 @@
                 </small>    
             </div>
         </div>
-        <div class=" text-muted">
-            Código: {{ $pedido->id }} 
-        </div>
+
+</div>
+<div class="card">
+    <table class="table table-hover table-sm ">
+        <caption>Lista de item</caption>
+        <thead class="thead-light">
+            <tr>
+                <th>Nombre </th>
+                <th>Cantidad</th>
+                <th>Precio Bs.</th>
+                <th>Subtotal Bs.</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($articulos as $articulo)
+            <tr>
+                <td>{{ $articulo->articulo }}</td>
+                <td>{{ $articulo->cantidad }} {{$articulo->abreviatura }}</td>
+                <td>{{ $articulo->precio}}</td>
+                <td>{{ $articulo->cantidad  * $articulo->precio}}</td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
 </div>
 
+</div>
 @endsection
