@@ -10,7 +10,15 @@
         html body.landing-page div.wrapper div#main div#container div.card-group div.card div.card-footer small.text-muted {
             padding-top: 1rem !important;
         }
-        
+
+        .derecha {
+            text-align:right !important;
+
+        }
+        .izquierda {
+            text-align:left !important;
+            padding-left: 4rem !important;
+        }
     </style>
 @endsection
 
@@ -95,24 +103,27 @@
         </div>
 
 </div>
-<div class="card">
+<div class="card" style="margin-top: 0px;">
+    <div class="card-title btn btn-info" style="margin-top: 0px;">
+        Detalle
+    </div>
     <table class="table table-hover table-sm ">
         <caption>Lista de item</caption>
-        <thead class="thead-light">
+        <thead class="thead-light derecha">
             <tr>
-                <th>Nombre </th>
+                <th class="izquierda">Nombre </th>
                 <th>Cantidad</th>
                 <th>Precio Bs.</th>
-                <th>Subtotal Bs.</th>
+                <th style="padding-right: 2rem !important;">Subtotal Bs.</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody class='derecha'>
             @foreach($articulos as $articulo)
             <tr>
-                <td>{{ $articulo->articulo }}</td>
+                <td class="izquierda">{{ $articulo->articulo }}</td>
                 <td>{{ $articulo->cantidad }} {{$articulo->abreviatura }}</td>
                 <td>{{ $articulo->precio}}</td>
-                <td>{{ $articulo->cantidad  * $articulo->precio}}</td>
+                <td style="padding-right: 2rem !important;">{{ $articulo->cantidad  * $articulo->precio}}</td>
             </tr>
             @endforeach
         </tbody>

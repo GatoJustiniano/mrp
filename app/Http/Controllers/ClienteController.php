@@ -36,11 +36,13 @@ class ClienteController extends Controller
     public function create()
     {
         $cliente      = Cliente::first();
+        $nrocodigo       = Cliente::count()+1;
+        $nrocodigo       = "Cliente00$nrocodigo";
         $estados        = Estado::orderBy('nombre', 'asc')->get();
 
         $municipios     = Municipio::orderBy('nombre', 'asc')->get();
 
-        return view('sprint3/cliente.create', compact('cliente', 'estados' ,'municipios'));
+        return view('sprint3/cliente.create', compact( 'nrocodigo' ,'cliente', 'estados' ,'municipios'));
     }
 
     /**
@@ -117,7 +119,6 @@ class ClienteController extends Controller
     public function update(Request $request, $id)
     {
         $cliente = Cliente::find($id);
-        $cliente->codigo = $request->input('codigo');
         $cliente->identificacion = $request->input('identificacion');
         $cliente->nombre = $request->input('nombre');
         $cliente->imagen = $request->input('imagen');

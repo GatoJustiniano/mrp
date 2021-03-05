@@ -35,7 +35,8 @@ class PedidoController extends Controller
                  'empleados.nombre as empleado',
                  'clientes.nombre as cliente'
                 )
-        ->orderBy('numero')
+        ->orderBy('pedidos.estado','desc')
+        ->orderBy('numero','asc')
         ->where('pedidos.eliminado',0)
         ->paginate(5);
 
@@ -49,16 +50,23 @@ class PedidoController extends Controller
      */
     public function create()
     {
-        $pedido         = Pedido::first();
+        $nropedido      = Carbon::now();
+        $nropedido      = $nropedido->format('YmdHi');
 
         $date = Carbon::now();
+        $limite = $date->format('Y-m-d');
         $date = $date->format('d-m-Y');
 
-        $empleados      = Empleado::orderBy('nombre', 'asc')->get();
+        $empleados = DB::table('empleados')
+        ->join('cargos', 'cargos.id', '=', 'id_cargo')
+        ->select('empleados.*')
+        ->orderBy('empleados.nombre','asc')
+        ->where('cargos.nombre','Promotor')->get();
+
         $clientes       = Cliente::orderBy('nombre', 'asc')->get();
         $articulos      = Articulo::all();
 
-        return view('sprint3/pedido.create', compact('pedido', 'empleados' ,'clientes', 'date', 'articulos'));
+        return view('sprint3/pedido.create', compact('nropedido', 'empleados' ,'clientes', 'date', 'limite' , 'articulos'));
     }
 
     /**
@@ -192,7 +200,6 @@ class PedidoController extends Controller
     public function update(Request $request, $id)
     {
         $pedido = Pedido::find($id);
-        $pedido->numero = $request->input('numero');
         $pedido->fecha_entrega = $request->input('fecha_entrega');
 
         $pedido->id_cliente = $request->input('id_cliente');

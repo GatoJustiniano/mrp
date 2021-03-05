@@ -3,8 +3,10 @@
 </div>
 <div class="row">
 	<div class="form-group col-md-3">
-		{{ Form::label('numero', 'Número:') }}
-		{{ Form::text('numero', null, ['class' => 'form-control', 'id' => 'numero']) }}
+        <label for="numero">Número:</label>
+        <fieldset disabled>
+            <input type="text" class="form-control" name="numero" id="numero" value="{{$nropedido}}">     
+        </fieldset>
 	</div>
 	<div class="form-group col-md-2">
 		{{ Form::label('fecha', 'Fecha:') }}
@@ -15,7 +17,7 @@
 	</div>
 	<div class="form-group col-md-3">
 		{{ Form::label('fecha_entrega', 'Fecha de Entrega:') }}
-		{{ Form::date('fecha_entrega', null, ['class' => 'form-control', 'id' => 'fecha_entrega']) }}
+		{{ Form::date('fecha_entrega', null, ['class' => 'form-control', 'id' => 'fecha_entrega', 'min'=>$limite]) }}
 	</div>
 </div>
 
@@ -73,18 +75,8 @@
 		</fieldset>
 	</div>
 
+</div>
 
-	<div class="form-group col-md-3">
-		{{ Form::label('observaciones', 'Obs:') }}
-		{{ Form::text('observaciones', null, ['class' => 'form-control', 'id' => 'observaciones']) }}
-	</div>
-</div>
-<div class="form-row">
-	<div class="form-group col-md-3">
-		<label for="">Precio</label>
-		<input id="precio_total" type="text" class="form-control" name="precio" readonly>
-	</div>
-</div>
 <hr>
 <div class="form-row">
             <div class="card">
@@ -112,7 +104,7 @@
                     </div>
                     <div class="form-group col-md-2">
                         <div class="form-group">
-                            <label for="">Precio</label>
+                            <label for="">Precio Bs.</label>
                             <input id="precio" type="text" class="form-control" readonly>
                         </div>
                     </div>
@@ -138,9 +130,19 @@
             </div>
         </div>
 
-<div class="form-group">
-	{{ Form::label('estado', 'Estado:') }}
-	{{ Form::select('estado', ['1'=>'Activo','0'=>'Inactivo'], ['class' => 'form-control']) }}
+<div class="row">
+    <div class="form-group col">
+        {{ Form::label('estado', 'Estado:') }}
+        {{ Form::select('estado', ['1'=>'Activo','0'=>'Inactivo'], ['class' => 'form-control']) }}
+    </div>
+    <div class="form-group col-md-6">
+        {{ Form::label('observaciones', 'Obs:') }}
+        {{ Form::text('observaciones', null, ['class' => 'form-control', 'id' => 'observaciones','placeholder'=>'información opcional']) }}
+    </div>
+    <div class="form-group col-md-3">
+		<label for="">Precio Bs.</label>
+		<input id="precio_total" type="text" class="form-control" name="precio" readonly>
+	</div>
 </div>
 
 <div class="form-group">

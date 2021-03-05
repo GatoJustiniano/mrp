@@ -27,7 +27,8 @@
         <div class="tarjeta">
             <div class="card card-crud card-nav-tabs text-center">
                 {!! Form::open(['route' => ['proveedores.store']]) !!}
-
+                <input type="hidden" name="codigo" id="codigo" value="{{$nrocodigo}}" >
+                
                 @include('sprint2.proveedor.partials.form')
 
                 {!! Form::close() !!}

@@ -1,7 +1,9 @@
 <div class="row">
 	<div class="form-group col-md-3">
 		{{ Form::label('codigo', 'Código:') }}
+		<fieldset disabled>
 		{{ Form::text('codigo', null, ['class' => 'form-control', 'id' => 'codigo']) }}
+		</fieldset>
 	</div>
 	<div class="form-group col-md-3">
 		{{ Form::label('identificacion', 'Identificación:') }}
@@ -46,7 +48,7 @@
 			<option value="">Seleccione un estado</option>
 			@foreach($estados as $estado)
 				<option value="{{ $estado->id }}"
-					@if( $estado->id === $proveedor->id_estado)
+					@if( $estado->id === $cliente->id_estado)
 						selected
 					@endif	
 				>
@@ -59,7 +61,7 @@
 	<div class="form-group col-md-4">
 		{{Form::label('id_provincia','Seleccionar Provincia: ')}}
 		<select name="id_provincia" id="id_provincia">Seleccionar Provincia
-				<option value="{{ $proveedor->id_provincia }}">{{ $proveedor->provincia }}</option>
+				<option value="{{ $cliente->id_provincia }}">{{ $cliente->provincia }}</option>
 		</select>
 	</div>
 
@@ -68,7 +70,7 @@
 		<select name="id_municipio" id="id_municipio">Seleccionar Municipio
 			@foreach($municipios as $municipio)
 					<option value="{{ $municipio->id }}"
-						@if( $municipio->id === $proveedor->id_municipio)
+						@if( $municipio->id === $cliente->id_municipio)
 							selected
 						@endif	
 					>
@@ -92,6 +94,6 @@
 
 @section('scripts')
 
-	<script src="/js/proveedor/edit.js"></script>
+	<script src="/js/cliente/edit.js"></script>
 
 @endsection 

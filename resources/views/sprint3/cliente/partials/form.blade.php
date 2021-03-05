@@ -1,7 +1,9 @@
 <div class="row">
 	<div class="form-group col-md-3">
 		{{ Form::label('codigo', 'Código:') }}
-		{{ Form::text('codigo', null, ['class' => 'form-control', 'id' => 'codigo']) }}
+		<fieldset disabled>
+		{{ Form::text('codigo', null, ['class' => 'form-control', 'id' => 'codigo','placeholder'=>$nrocodigo]) }}
+		</fieldset>
 	</div>
 	<div class="form-group col-md-3">
 		{{ Form::label('identificacion', 'Identificación:') }}

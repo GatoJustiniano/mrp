@@ -28,7 +28,7 @@
             <div class="card card-crud card-nav-tabs text-center">
                 {!! Form::model($empleado, ['route' => ['empleados.update', $empleado->id], 'method' => 'PUT']) !!}
             
-                    @include('sprint1.empleado.partials.form')
+                    @include('sprint1.empleado.partials.edit')
 
                 {!! Form::close() !!}
             </div>

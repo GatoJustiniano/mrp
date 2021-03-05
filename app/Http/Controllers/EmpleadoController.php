@@ -40,11 +40,13 @@ class EmpleadoController extends Controller
     public function create()
     {
         $empleado       = Empleado::first();
+        $contador       = Empleado::count()+1;
+        $contador       = "Emple00$contador";
         $departamentos  = Departamento::orderBy('nombre', 'asc')->get();
         $sucursales     = Sucursal::orderBy('descripcion', 'asc')->get();
         $cargos         = Cargo::orderBy('nombre', 'asc')->get();
 
-        return view('sprint1/empleado.create', compact('departamentos', 'sucursales', 'cargos','empleado'));
+        return view('sprint1/empleado.create', compact('contador','departamentos', 'sucursales', 'cargos','empleado'));
     }
 
     /**
@@ -104,7 +106,6 @@ class EmpleadoController extends Controller
     public function update(Request $request, $id)
     {
         $empleado = Empleado::find($id);
-        $empleado->codigo = $request->input('codigo');
         $empleado->cedula = $request->input('cedula');
         $empleado->nombre = $request->input('nombre');
         $empleado->direccion = $request->input('direccion');

@@ -46,11 +46,13 @@ class ProveedorController extends Controller
     public function create()
     {
         $proveedor      = Proveedor::first();
-        $estados        = Estado::orderBy('nombre', 'asc')->get();
+        $nrocodigo       = Proveedor::count()+1;
+        $nrocodigo       = "Provee00$nrocodigo";
 
+        $estados        = Estado::orderBy('nombre', 'asc')->get();
         $municipios     = Municipio::orderBy('nombre', 'asc')->get();
 
-        return view('sprint2/proveedor.create', compact('proveedor', 'estados' ,'municipios'));
+        return view('sprint2/proveedor.create', compact( 'nrocodigo', 'proveedor', 'estados' ,'municipios'));
     }
 
     /**
@@ -128,7 +130,6 @@ class ProveedorController extends Controller
     public function update(Request $request, $id)
     {
         $proveedor = Proveedor::find($id);
-        $proveedor->codigo = $request->input('codigo');
         $proveedor->nombre = $request->input('nombre');
         $proveedor->imagen = $request->input('imagen');
         $proveedor->direccion = $request->input('direccion');

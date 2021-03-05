@@ -30,6 +30,7 @@
         <div class="tarjeta">
             <div class="card card-crud card-nav-tabs text-center">
                 {!! Form::open(['route' => ['pedidos.store']]) !!}
+                <input type="hidden" name="numero" id="numero" value="{{$nropedido}}" >               
 
                 @include('sprint3.pedido.partials.form')
 

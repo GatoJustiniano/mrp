@@ -27,6 +27,7 @@
         <div class="tarjeta">
             <div class="card card-crud card-nav-tabs text-center">
                 {!! Form::open(['route' => ['empleados.store']]) !!}
+                <input type="hidden" name="codigo" id="codigo" value="{{$contador}}" >               
 
                 @include('sprint1.empleado.partials.form')
 

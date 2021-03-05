@@ -70,14 +70,6 @@
                                     </a>
                                 </td>
                                 @endcan
-                                @can('pedidos.edit')
-                                <td width="10px">
-                                    <a href="{{ route('pedidos.edit', $pedido->id) }}" 
-                                    class="btn btn-sm btn-warning">
-                                        editar
-                                    </a>
-                                </td>
-                                @endcan
                                 @can('pedidos.destroy')
                                 <td width="10px">
                                     @if($pedido->estado === 1 )

@@ -2,7 +2,7 @@
 	<div class="form-group col">
 		{{ Form::label('codigo', 'Código:') }}
 		<fieldset disabled>
-		{{ Form::text('codigo', null, ['class' => 'form-control', 'id' => 'codigo','placeholder'=>$contador]) }}
+		{{ Form::text('codigo', null, ['class' => 'form-control', 'id' => 'codigo']) }}
 		</fieldset>
 	</div>
 	<div class="form-group col">
@@ -29,7 +29,7 @@
 	</div>
 	<div class="form-group col">
 		{{ Form::label('fecha_nac', 'Fecha de Nacimiento:') }}
-		{{ Form::date('fecha_nac', null, ['class' => 'form-control', 'id' => 'fecha_nac']) }}
+		{{ Form::text('fecha_nac', null, ['class' => 'form-control', 'id' => 'fecha_nac']) }}
 	</div>
 </div>
 
