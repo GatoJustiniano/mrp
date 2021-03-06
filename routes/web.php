@@ -395,6 +395,27 @@ Route::middleware(['auth'])->group(function () {
     Route::post('pedido/store', 'PedidoController@store')->name('pedidos.store')
 		->middleware('can:pedidos.create');
 
+    //Venta
+    Route::get('sprint3/venta', 'VentaController@index')->name('ventas.index')
+        ->middleware('can:ventas.index');
+
+    Route::get('venta/{venta}', 'VentaController@show')->name('ventas.show')
+        ->middleware('can:ventas.show');
+
+    Route::get('venta/{venta}/edit', 'VentaController@edit')->name('ventas.edit')
+        ->middleware('can:ventas.edit');
+
+    Route::delete('venta/{venta}/{tipo}', 'VentaController@destroy')->name('ventas.destroy')
+        ->middleware('can:ventas.destroy');
+
+    Route::put('venta/{venta}', 'VentaController@update')->name('ventas.update')
+        ->middleware('can:ventas.edit');
+
+    Route::get('sprint3/venta/create', 'VentaController@create')->name('ventas.create')
+        ->middleware('can:ventas.create');
+
+    Route::post('venta/store', 'VentaController@store')->name('ventas.store')
+		->middleware('can:ventas.create');
 });
 
 

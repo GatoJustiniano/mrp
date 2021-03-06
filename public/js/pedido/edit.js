@@ -1,6 +1,8 @@
 $(function () {
    $('#id_cliente').on('change', onSelectCliente);
    $('#id_empleado').on('change', onSelectEmpleado);
+   $('#id_sucursal').on('change', onSelectSucursalChange);
+
 });
 
 function onSelectCliente() {
@@ -48,4 +50,22 @@ function onSelectEmpleado() {
         $('#empleado_codigo').html(html_select); 
     });
 
+}
+
+function onSelectSucursalChange() {
+    var sucursal_id = $(this).val();
+
+    if (!sucursal_id) {
+        $('#id_almacen').html('<option value="">Seleccione almacén</option>');
+        return;
+    }
+    
+    //Petición AJAX
+    $.get('/api/sucursal/'+sucursal_id+'/almacenes', function (data) {
+        var html_select = '<option value="">Seleccione almacén</option>'; 
+        for (let i = 0; i < data.length; i++) {
+            html_select += '<option value="'+data[i].id+'">'+data[i].codigo+' '+data[i].descripcion+'</option>';
+        }
+        $('#id_almacen').html(html_select); 
+    });
 }

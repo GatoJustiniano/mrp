@@ -7,3 +7,5 @@ Route::get( '/provincia/{id}/municipios' , 'ProveedorController@byProvincia');
 
 Route::get( '/pedido/{id}/cliente' , 'PedidoController@byCliente');
 Route::get( '/pedido/{id}/empleado' , 'PedidoController@byEmpleado');
+
+Route::get( '/sucursal/{id}/almacenes' , 'VentaController@byAlmacen');
