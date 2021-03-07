@@ -415,7 +415,29 @@ Route::middleware(['auth'])->group(function () {
         ->middleware('can:ventas.create');
 
     Route::post('venta/store', 'VentaController@store')->name('ventas.store')
-		->middleware('can:ventas.create');
+        ->middleware('can:ventas.create');
+        
+    //Compra
+    Route::get('sprint3/compra', 'CompraController@index')->name('compras.index')
+        ->middleware('can:compras.index');
+
+    Route::get('compra/{compra}', 'CompraController@show')->name('compras.show')
+        ->middleware('can:compras.show');
+
+    Route::get('compra/{compra}/edit', 'CompraController@edit')->name('compras.edit')
+        ->middleware('can:compras.edit');
+
+    Route::delete('compra/{compra}/{tipo}', 'CompraController@destroy')->name('compras.destroy')
+        ->middleware('can:compras.destroy');
+
+    Route::put('compra/{compra}', 'CompraController@update')->name('compras.update')
+        ->middleware('can:compras.edit');
+
+    Route::get('sprint3/compra/create', 'CompraController@create')->name('compras.create')
+        ->middleware('can:compras.create');
+
+    Route::post('compra/store', 'CompraController@store')->name('compras.store')
+		->middleware('can:compras.create');
 });
 
 

@@ -152,7 +152,7 @@
                     <li><a class="nav-pills" href="{{ route('clientes.index') }}">Cliente </a></li>
                     <li><a class="nav-pills" href="{{ route('pedidos.index') }}">Pedido </a></li>
                     <li><a class="nav-pills" href="{{ route('ventas.index') }}">Venta </a></li>
-                    <li><a class="nav-pills" href="#">Compra </a></li>
+                    <li><a class="nav-pills" href="{{ route('compras.index') }}">Compra </a></li>
                     <li><a class="nav-pills" href="#">View Mov de inventario </a></li>
                     <li><a class="nav-pills" href="#">View Ingresos </a></li>
                     <li><a class="nav-pills" href="#">View Salidas </a></li>

@@ -3,45 +3,45 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Venta;
-use App\SalidaDetalle;
+use App\Compra;
+use App\IngresoDetalle;
 
-use App\Cliente;
+use App\Proveedor;
 use App\Empleado;
 use App\Sucursal;
 use App\Almacen;
 use App\Articulo;
-use App\Salida;
+use App\Ingreso;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
 use Carbon\Carbon;
 
-class VentaController extends Controller
+class CompraController extends Controller
 {
-    public function byAlmacen($id)
+    public function byProveedor($id)
     {   
-        return Almacen::where('sucursal', $id)->get();
+        return Proveedor::where('id', $id)->get();
     }
 
     public function index()
     {
-        $ventas = DB::table('ventas')
+        $compras = DB::table('compras')
         ->join('empleados', 'empleados.id', '=', 'id_empleado')
-        ->join('clientes', 'clientes.id', '=', 'id_cliente')
+        ->join('proveedors', 'proveedors.id', '=', 'id_proveedor')
         ->join('almacens', 'almacens.id', '=', 'id_almacen')
-        ->select('ventas.*',
+        ->select('compras.*',
                  'empleados.nombre as empleado',
-                 'clientes.nombre as cliente',
+                 'proveedors.nombre as proveedor',
                  'almacens.codigo as almacen'
                 )
-        ->orderBy('ventas.estado','desc')
+        ->orderBy('compras.estado','desc')
         ->orderBy('numero','asc')
-        ->where('ventas.eliminado',0)
+        ->where('compras.eliminado',0)
         ->paginate(5);
 
-        return view('sprint3/venta.index', compact('ventas'));
+        return view('sprint3/compra.index', compact('compras'));
     }
 
     /**
@@ -51,8 +51,8 @@ class VentaController extends Controller
      */
     public function create()
     {
-        $nroventa      = Carbon::now();
-        $nroventa      = $nroventa->format('YmdHi');
+        $nrocompra      = Carbon::now();
+        $nrocompra      = $nrocompra->format('YmdHi');
 
         $date = Carbon::now();
         $limite = $date->format('Y-m-d');
@@ -64,12 +64,12 @@ class VentaController extends Controller
         ->orderBy('empleados.nombre','asc')
         ->where('cargos.nombre','Promotor')->get();
 
-        $clientes       = Cliente::orderBy('nombre', 'asc')->get();
+        $proveedores    = Proveedor::orderBy('nombre', 'asc')->get();
         $Sucursal       = Sucursal::orderBy('descripcion', 'asc')->get();
         $articulos      = Articulo::all();
         $sucursales     = Sucursal::all();
 
-        return view('sprint3/venta.create', compact('nroventa', 'empleados' ,'clientes', 'date', 'limite' , 'articulos','sucursales'));
+        return view('sprint3/compra.create', compact('nrocompra', 'empleados' ,'proveedores', 'date', 'limite' , 'articulos','sucursales'));
     }
 
     /**
@@ -87,25 +87,25 @@ class VentaController extends Controller
         $input = $request->all();
         try {
             DB::beginTransaction();
-            $venta     = Venta::create([
+            $compra     = Compra::create([
                 "numero" => $input["numero"],
                 "fecha_entrega" => $input["fecha_entrega"],
-                "id_cliente" => $input["id_cliente"],
+                "id_proveedor" => $input["id_proveedor"],
                 "id_empleado" => $input["id_empleado"],
                 "id_almacen" => $input["id_almacen"],
                 "estado" => $input["estado"],
                 "monto_total" => $this->calcular_precio($input["insumo_id"], $input["cantidades"]),
             ]);
-            $salida = Salida::create([
+            $ingreso = Ingreso::create([
                 "numero" => $input["numero"],
                 "estado" => $input["estado"],
             ]);
 
             foreach($input["insumo_id"] as $key => $value){
-                SalidaDetalle::create([
+                IngresoDetalle::create([
                     "id_articulo"=>$value,
-                    "id_venta"=>$venta->id,
-                    "id_salida"=>$salida->id,
+                    "id_compra"=>$compra->id,
+                    "id_ingreso"=>$ingreso->id,
                     "cantidad" => $input["cantidades"][$key]
                 ]);
                 /*
@@ -115,14 +115,14 @@ class VentaController extends Controller
             }
             
             DB::commit();
-            $mensaje    = $venta;
-            Log::info( 'IP DEL CLIENTE:'. $ip['REMOTE_ADDR'] . ' CLIENTE: '. $user->name . ' DESDE NAVEGADOR:'.$ip['HTTP_USER_AGENT'] . ' DESCRIPCIÓN: Venta creada, id: ' .$mensaje->id . ', Nombre: ' . $mensaje->nombre . ' ' );
+            $mensaje    = $compra;
+            Log::info( 'IP DEL CLIENTE:'. $ip['REMOTE_ADDR'] . ' CLIENTE: '. $user->name . ' DESDE NAVEGADOR:'.$ip['HTTP_USER_AGENT'] . ' DESCRIPCIÓN: Compra creada, id: ' .$mensaje->id . ', Nombre: ' . $mensaje->nombre . ' ' );
 
-            return redirect()->route('ventas.show', $venta->id)
-            ->with('info', 'Venta guardada con éxito');
+            return redirect()->route('compras.show', $compra->id)
+            ->with('info', 'Compra guardada con éxito');
         } catch (\Exception $e) {
             DB::rollBack();
-            return redirect()->route('ventas.index')->with('info', $e->getMessage());
+            return redirect()->route('compras.index')->with('info', $e->getMessage());
         }
     }
 
@@ -144,31 +144,31 @@ class VentaController extends Controller
      */
     public function show($id)
     {
-        $venta         = Venta::find($id);
-        $empleado      = Empleado::find($venta->id_empleado);
+        $compra         = Compra::find($id);
+        $empleado      = Empleado::find($compra->id_empleado);
         
-        $cliente        = Cliente::find($venta->id_cliente);
-        $almacen        = Almacen::find($venta->id_almacen);
+        $proveedor        = Proveedor::find($compra->id_proveedor);
+        $almacen        = Almacen::find($compra->id_almacen);
 
-        $articulos = DB::table('salida_detalles')
-        ->join('ventas', 'ventas.id', '=', 'id_venta')
-        ->join('articulos', 'articulos.id', '=', 'salida_detalles.id_articulo')
+        $articulos = DB::table('ingreso_detalles')
+        ->join('compras', 'compras.id', '=', 'id_compra')
+        ->join('articulos', 'articulos.id', '=', 'ingreso_detalles.id_articulo')
         ->join('unidad_medidas', 'unidad_medidas.id', '=', 'articulos.unidad_medida_id')
-        ->select('salida_detalles.*',
+        ->select('ingreso_detalles.*',
                  'articulos.nombre as articulo',
                  'articulos.precio_venta as precio',
                  'unidad_medidas.abreviatura as abreviatura'
                 )
         ->orderBy('articulos.nombre')
-        ->where('salida_detalles.id_venta','=',$id)
+        ->where('ingreso_detalles.id_compra','=',$id)
         ->paginate(5);
 
-        $periodo = $venta->created_at;
-        $periodo = $periodo->diffInDays($venta->fecha_entrega);
+        $periodo = $compra->created_at;
+        $periodo = $periodo->diffInDays($compra->fecha_entrega);
 
         $dias = Carbon::now();
-        $dias = $dias->diffInDays($venta->fecha_entrega);
-        return view('sprint3/venta.show', compact('venta','empleado','cliente', 'almacen' ,'articulos','dias','periodo'));
+        $dias = $dias->diffInDays($compra->fecha_entrega);
+        return view('sprint3/compra.show', compact('compra','empleado','proveedor', 'almacen' ,'articulos','dias','periodo'));
     }
 
     /**
@@ -182,21 +182,21 @@ class VentaController extends Controller
         $ip = request()->server();
         $user =auth()->user();
 
-        $venta = DB::table('ventas')
+        $compra = DB::table('compras')
         ->join('empleados', 'empleados.id', '=', 'id_empleado')
-        ->join('cliente', 'cliente.id', '=', 'id_cliente')
-        ->where('ventas.id','=',$id)
-        ->select('ventas.*',
+        ->join('proveedors', 'proveedors.id', '=', 'id_proveedor')
+        ->where('compras.id','=',$id)
+        ->select('compras.*',
                  'empleados.nombre as empleado',
-                 'cliente.nombre as cliente'
+                 'proveedors.nombre as proveedors'
                 )->first();
 
-        $clientes       = Cliente::orderBy('nombre', 'asc')->get();
+        $proveedores       = Proveedor::orderBy('nombre', 'asc')->get();
         $empleados      = Empleado::orderBy('nombre', 'asc')->get();
 
-        $mensaje    = $venta;
-        Log::info( 'IP DEL CLIENTE:'. $ip['REMOTE_ADDR'] . ' CLIENTE: '. $user->name . ' DESDE NAVEGADOR:'.$ip['HTTP_USER_AGENT'] . ' DESCRIPCIÓN: Venta editada, id: ' .$mensaje->id . ', Nombre: ' . $mensaje->nombre . ' ' );
-        return view('sprint3/venta.edit', compact('venta','clientes','empleados'));
+        $mensaje    = $compra;
+        Log::info( 'IP DEL CLIENTE:'. $ip['REMOTE_ADDR'] . ' CLIENTE: '. $user->name . ' DESDE NAVEGADOR:'.$ip['HTTP_USER_AGENT'] . ' DESCRIPCIÓN: Compra editada, id: ' .$mensaje->id . ', Nombre: ' . $mensaje->nombre . ' ' );
+        return view('sprint3/compra.edit', compact('compra','proveedores','empleados'));
     }
 
     /**
@@ -208,21 +208,21 @@ class VentaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $venta = Venta::find($id);
-        $venta->fecha_entrega = $request->input('fecha_entrega');
+        $compra = Compra::find($id);
+        $compra->fecha_entrega = $request->input('fecha_entrega');
 
-        $venta->id_cliente = $request->input('id_cliente');
-        $venta->id_empleado = $request->input('id_empleado');
-        $venta->id_almacen = $request->input('id_almacen');
+        $compra->id_proveedor = $request->input('id_proveedor');
+        $compra->id_empleado = $request->input('id_empleado');
+        $compra->id_almacen = $request->input('id_almacen');
 
-        $venta->monto_total = $request->input('monto_total');
-        $venta->id_almacen = $request->input('id_almacen');
-        $venta->estado = $request->input('estado');
+        $compra->monto_total = $request->input('monto_total');
+        $compra->id_almacen = $request->input('id_almacen');
+        $compra->estado = $request->input('estado');
     
-        $venta->save();
+        $compra->save();
 
-        return redirect()->route('ventas.edit', $venta->id)
-            ->with('info', 'Venta guardada con éxito');
+        return redirect()->route('compras.edit', $compra->id)
+            ->with('info', 'Compra guardada con éxito');
     }
 
     /**
@@ -236,38 +236,37 @@ class VentaController extends Controller
         $ip = request()->server();
         $user =auth()->user();
 
-        $venta = Venta::find($id);
+        $compra = Compra::find($id);
 
-        $mensaje = Venta::find($id);
+        $mensaje = Compra::find($id);
         $darBaja    ="200"; 
         $darAlta    ="400";
         $eliminado  ="600";
         if($tipo === $darBaja){
             //si es 200 de da de baja
-            $venta->estado = false;
-            Log::info( 'IP DEL CLIENTE:'. $ip['REMOTE_ADDR'] . ' CLIENTE: '. $user->name . ' DESDE NAVEGADOR:'.$ip['HTTP_USER_AGENT'] . ' DESCRIPCIÓN: Venta dado de baja, id: ' .$mensaje->id . ', Nombre: ' . $mensaje->nombre . ' ' );
+            $compra->estado = false;
+            Log::info( 'IP DEL CLIENTE:'. $ip['REMOTE_ADDR'] . ' CLIENTE: '. $user->name . ' DESDE NAVEGADOR:'.$ip['HTTP_USER_AGENT'] . ' DESCRIPCIÓN: Compra dado de baja, id: ' .$mensaje->id . ', Nombre: ' . $mensaje->nombre . ' ' );
             
-            $venta->save();
+            $compra->save();
 
             return back()->with('info', 'Dado de baja correctamente');
         }
         if($tipo === $darAlta){
             //si es 400 dar Alta
-            $venta->estado = true;
-            Log::info( 'IP DEL CLIENTE:'. $ip['REMOTE_ADDR'] . ' CLIENTE: '. $user->name . ' DESDE NAVEGADOR:'.$ip['HTTP_USER_AGENT'] . ' DESCRIPCIÓN: Venta dado de alta, id: ' .$mensaje->id . ', Nombre: ' . $mensaje->nombre . ' ' );
-            $venta->save();
+            $compra->estado = true;
+            Log::info( 'IP DEL CLIENTE:'. $ip['REMOTE_ADDR'] . ' CLIENTE: '. $user->name . ' DESDE NAVEGADOR:'.$ip['HTTP_USER_AGENT'] . ' DESCRIPCIÓN: Compra dado de alta, id: ' .$mensaje->id . ', Nombre: ' . $mensaje->nombre . ' ' );
+            $compra->save();
 
             return back()->with('info', 'Dado de alta correctamente');
         }
         if($tipo === $eliminado){
             //si es 400 de cambia el eliminado
-            $venta->eliminado = true;
+            $compra->eliminado = true;
 
-            //Cambia el estado eliminado de las areas dependientes de este venta
-            //DB::table('areas')->where('departamento_id',$venta->id)->update(['eliminado'=>true]);
+            //Cambia el estado eliminado de las compras dependientes de este compra
 
-            Log::info( 'IP DEL CLIENTE:'. $ip['REMOTE_ADDR'] . ' CLIENTE: '. $user->name . ' DESDE NAVEGADOR:'.$ip['HTTP_USER_AGENT'] . ' DESCRIPCIÓN: Venta eliminado, id: ' .$mensaje->id . ', Nombre: ' . $mensaje->nombre . ' ' );
-            $venta->save();
+            Log::info( 'IP DEL CLIENTE:'. $ip['REMOTE_ADDR'] . ' CLIENTE: '. $user->name . ' DESDE NAVEGADOR:'.$ip['HTTP_USER_AGENT'] . ' DESCRIPCIÓN: Compra eliminado, id: ' .$mensaje->id . ', Nombre: ' . $mensaje->nombre . ' ' );
+            $compra->save();
 
             return back()->with('info', 'Eliminado correctamente');
         }

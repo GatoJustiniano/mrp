@@ -2,6 +2,7 @@ $(function () {
    $('#id_cliente').on('change', onSelectCliente);
    $('#id_empleado').on('change', onSelectEmpleado);
    $('#id_sucursal').on('change', onSelectSucursalChange);
+   $('#id_proveedor').on('change', onSelectProveedor);
 
 });
 
@@ -68,4 +69,23 @@ function onSelectSucursalChange() {
         }
         $('#id_almacen').html(html_select); 
     });
+}
+
+function onSelectProveedor() {
+    var proveedor_id = $(this).val();
+
+    if (!proveedor_id) {
+        $('#proveedor_codigo').html('<option value=""></option>');
+        return;
+    }
+    
+    //Petición AJAX para colocar codigo
+    $.get('/api/compra/'+proveedor_id+'/proveedor', function (data) {
+        var html_select = '<option value="">Código</option>'; 
+        for (let i = 0; i < data.length; i++) {
+            html_select += '<option selected value="'+data[i].id+'">'+data[i].nombre+'</option>';
+        }
+        $('#proveedor_codigo').html(html_select); 
+    });
+
 }
