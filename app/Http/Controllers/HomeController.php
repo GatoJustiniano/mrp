@@ -35,7 +35,9 @@ class HomeController extends Controller
     public function sprint2(){
         return view('sprint2.home');
     }
-    
+    public function sprint4(){
+        return view('sprint4.home');
+    }
     public function inventario(){
       return view('inventario.inventario');
     }

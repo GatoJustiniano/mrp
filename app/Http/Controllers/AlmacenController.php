@@ -96,7 +96,7 @@ class AlmacenController extends Controller
         $almacen->id_sucursal = $request->input('id_sucursal');
         $almacen->save();
 
-        return redirect()->route('almacens.edit', $almacen->id)
+        return redirect()->route('almacens.index', $almacen->id)
             ->with('info', 'Almacén guardado con éxito');
     }
 
