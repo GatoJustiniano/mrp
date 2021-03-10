@@ -16,11 +16,6 @@
 
         <!-- CSS Files -->
         <link href="{{ asset('/css/material-kit.min.css') }}" rel="stylesheet"/>
-        <!-- CSS Just for demo purpose, don't include it in your project -->
-        <link href="{{ asset('demo/demo.css') }}" rel="stylesheet" />
-        <!-- SELECT -->
-        <link href="{{ asset('/assets/bootstrap-select-1.13.14/dist/css/bootstrap-select.min.css') }}" rel="stylesheet"/>
-
         <!-- CSS Files -->
 
         <link href="{{asset('/assets/bootstrap-fileinput/css/fileinput.min.css')}}" media="all" rel="stylesheet" type="text/css" />
@@ -170,31 +165,9 @@
             @yield('content')
         </div>
     </body>
-
-    <!--   Core JS Files   -->
-    <script src="{{ asset('/js/core/jquery.min.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('/js/core/popper.min.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('/js/core/bootstrap-material-design.min.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('/js/plugins/moment.min.js') }}"></script>
-
-    <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
-    <script src="{{ asset('/js/plugins/nouislider.min.js') }}" type="text/javascript"></script>
-
-    <!--  Plugin for the Datepicker, full documentation here: http://www.eyecon.ro/bootstrap-datepicker/ -->
-    <script src="{{ asset('/js/plugins/bootstrap-datetimepicker.js') }}" type="text/javascript"></script>
-
-    <!-- SELECTt -->
-    <script src="{{asset('/assets/bootstrap-select-1.13.14/dist/js/bootstrap-select.min.js')}}"></script>
-
-    <!-- Control Center for Material Kit: activating the ripples, parallax effects, scripts from the example pages etc -->
-    <script src="{{ asset('/js/material-kit.js') }}" type="text/javascript"></script>
-    <!-- jasny-bootstrap -->
-    <script src="{{ asset('/js/bootstrap.min.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('/js/bootstrap.js') }}" type="text/javascript"></script>
-    <!-- fileinput-bootstrap -->
-    <script src="{{asset('/assets/bootstrap-fileinput/js/fileinput.min.js')}}"></script>
-    <script src="{{asset('/assets/bootstrap-fileinput/themes/fa/theme.js')}}"></script>
-    <script src="{{asset('/assets/bootstrap-fileinput/js/locales/es.js')}}"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js"></script>
 
     @yield('scripts')
 

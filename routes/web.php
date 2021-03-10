@@ -437,7 +437,11 @@ Route::middleware(['auth'])->group(function () {
         ->middleware('can:compras.create');
 
     Route::post('compra/store', 'CompraController@store')->name('compras.store')
-		->middleware('can:compras.create');
+        ->middleware('can:compras.create');
+        
+    //Salida
+    Route::get('sprint3/salida', 'SalidaController@index')->name('salidas.index')
+        ->middleware('can:salidas.index');
 });
 
 

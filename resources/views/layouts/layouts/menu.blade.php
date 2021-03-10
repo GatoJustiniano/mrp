@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.layouts.app')
 
 @section('title', 'MRP')
 
@@ -173,7 +173,7 @@
         </ul>
       </nav>
 
-      <aside id="aside">Publicidad</aside>
+      <aside id="aside">reports</aside>
    </div>
 
   
