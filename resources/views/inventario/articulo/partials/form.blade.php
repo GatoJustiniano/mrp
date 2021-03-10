@@ -115,6 +115,14 @@
 </div>
 
 <div class="form-group">
+<h2 class="title text-center">
+                @can('listamaterials.create')
+                    <a href="{{ route('listamaterials.create') }}" 
+                    class="btn btn-sm btn-success pull-right">
+                       lista de materiales
+                    </a>
+                @endcan
+            </h2>
 	{{ Form::submit('Guardar', ['class' => 'btn btn-sm btn-success float-right']) }}
 </div>
 

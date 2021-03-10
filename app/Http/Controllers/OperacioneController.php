@@ -3,13 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Sucursal;
+use App\Operacione;
+use App\Cproduccione;
 use App\Estado;
 //use Caffeinated\Shinobi\Models\Estado;
 
 use Illuminate\Support\Facades\Log;
 
-class SucursalController extends Controller
+class OperacioneController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,9 +19,9 @@ class SucursalController extends Controller
      */
     public function index()
     {
-        $sucursals = Sucursal::paginate();
+        $operaciones = Operacione::paginate();
 
-        return view('sprint1/sucursals.index', compact('sucursals'));
+        return view('sprint4/operaciones.index', compact('operaciones'));
     }
 
     /**
@@ -31,11 +32,11 @@ class SucursalController extends Controller
     public function create()
     {   
      
-        $sucursal = Sucursal::first();
+        $operacione = Operacione::first();
        // $estados = Estado::orderBy('id_estado', 'desc')->pluck('tipo_estado', 'id_estado');
-       $estados = Estado::all();
+       $cproducciones = Cproduccione::all();
         //return view('sucursals.create');
-        return view('sprint1/sucursals.create',compact('sucursal','estados'));
+        return view('sprint4/operaciones.create',compact('operacione','cproducciones'));
     }
 
     /**
@@ -46,11 +47,11 @@ class SucursalController extends Controller
      */
     public function store(Request $request)
     {
-        $sucursal = Sucursal::create($request->all());
-        $estados = Estado::all();
-          //dd($sucursal);
-        return redirect()->route('sucursals.index', $sucursal->id)
-            ->with('info', 'Sucursal se ha guardado con éxito');
+        $operacione = Operacione::create($request->all());
+        $cproducciones = Cproduccione::all();
+        //dd($operacione);
+        return redirect()->route('operaciones.index', $operacione->id)
+            ->with('info', 'operacione se ha guardado con éxito');
     }
 
     /**
@@ -61,9 +62,9 @@ class SucursalController extends Controller
      */
     public function show($id)
     {
-        $sucursal = Sucursal::find($id);
+        $operacione = Operacione::find($id);
 
-        return view('sprint1/sucursals.show', compact('sucursal'));
+        return view('sprint4/operaciones.show', compact('operacione'));
     }
 
     /**
@@ -74,11 +75,11 @@ class SucursalController extends Controller
      */
     public function edit($id)
     {
-        $sucursal = Sucursal::find($id);
+        $operacione = Operacione::find($id);
        // $estados = Estado::orderBy('id_estado', 'desc')->pluck('tipo_estado', 'id_estado');
         //return view('sucursals.create');
-        $estados = Estado::all();
-        return view('sprint1/sucursals.edit', compact('sucursal','estados'));
+       // $estados = Estado::all();
+        return view('sprint4/operaciones.edit', compact('operacione'));
     }
 
     /**
@@ -90,19 +91,23 @@ class SucursalController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $sucursal = Sucursal::find($id);
+        $operacione = Operacione::find($id);
         //dd($sucursal);
     
-
-
-        $sucursal->codigo = $request->input('codigo');
-        $sucursal->descripcion = $request->input('descripcion');
-        $sucursal->direccion = $request->input('direccion');
-        $sucursal->estado = $request->input('estado');
+        $operacione->codigo = $request->input('codigo');
+        $operacione->nombre = $request->input('nombre');
+        $operacione->cproduccione = $request->input('cproduccione');
+      
+        $operacione->duracion = $request->input('duracion');
+        $operacione->costoduracion = $request->input('costoduracion');
+        $operacione->descripcion = $request->input('descripcion');
+    
+        
      
-        $sucursal->save();
+     
+        $operacione->save();
 
-        return redirect()->route('sucursals.index', $sucursal->id)
+        return redirect()->route('operaciones.index', $operacione->id)
             ->with('info', 'Rol guardado con éxito');
     }
 
@@ -114,10 +119,10 @@ class SucursalController extends Controller
      */
     public function destroy($id)
     {
-        $mensaje = Sucursal::find($id);
-        $sucursal = Sucursal::find($id)->delete();
+        $mensaje = Operacione::find($id);
+        $operacione = Operacione::find($id)->delete();
         
-        Log::info( 'Sucursal eliminado: ' .$mensaje->id . ' ' . $mensaje->name . ' ' . $mensaje->description );
+        Log::info( 'Operacione eliminado: ' .$mensaje->id . ' ' . $mensaje->name . ' ' . $mensaje->description );
         return back()->with('info', 'Eliminado correctamente');
     }
 }
