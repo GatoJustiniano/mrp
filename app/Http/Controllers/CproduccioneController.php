@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Sucursal;
+use App\Cproduccione;
 use App\Estado;
 //use Caffeinated\Shinobi\Models\Estado;
 
 use Illuminate\Support\Facades\Log;
 
-class SucursalController extends Controller
+class CproduccioneController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,9 +18,9 @@ class SucursalController extends Controller
      */
     public function index()
     {
-        $sucursals = Sucursal::paginate();
+        $cproducciones = Cproduccione::paginate();
 
-        return view('sprint1/sucursals.index', compact('sucursals'));
+        return view('sprint4/cproducciones.index', compact('cproducciones'));
     }
 
     /**
@@ -31,11 +31,11 @@ class SucursalController extends Controller
     public function create()
     {   
      
-        $sucursal = Sucursal::first();
+        $cproduccione = Cproduccione::first();
        // $estados = Estado::orderBy('id_estado', 'desc')->pluck('tipo_estado', 'id_estado');
        $estados = Estado::all();
         //return view('sucursals.create');
-        return view('sprint1/sucursals.create',compact('sucursal','estados'));
+        return view('sprint4/cproducciones.create',compact('cproduccione','estados'));
     }
 
     /**
@@ -46,11 +46,11 @@ class SucursalController extends Controller
      */
     public function store(Request $request)
     {
-        $sucursal = Sucursal::create($request->all());
+        $cproduccione = Cproduccione::create($request->all());
         $estados = Estado::all();
           //dd($sucursal);
-        return redirect()->route('sucursals.index', $sucursal->id)
-            ->with('info', 'Sucursal se ha guardado con éxito');
+        return redirect()->route('cproducciones.index', $cproduccione->id)
+            ->with('info', 'operacione se ha guardado con éxito');
     }
 
     /**
@@ -61,9 +61,9 @@ class SucursalController extends Controller
      */
     public function show($id)
     {
-        $sucursal = Sucursal::find($id);
+        $cproduccione = Cproduccione::find($id);
 
-        return view('sprint1/sucursals.show', compact('sucursal'));
+        return view('sprint4/cproducciones.show', compact('cproduccione'));
     }
 
     /**
@@ -74,11 +74,11 @@ class SucursalController extends Controller
      */
     public function edit($id)
     {
-        $sucursal = Sucursal::find($id);
+        $cproduccione = Cproduccione::find($id);
        // $estados = Estado::orderBy('id_estado', 'desc')->pluck('tipo_estado', 'id_estado');
         //return view('sucursals.create');
-        $estados = Estado::all();
-        return view('sprint1/sucursals.edit', compact('sucursal','estados'));
+       // $estados = Estado::all();
+        return view('sprint4/cproducciones.edit', compact('cproduccione'));
     }
 
     /**
@@ -90,19 +90,22 @@ class SucursalController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $sucursal = Sucursal::find($id);
+        $cproduccione = Cproduccione::find($id);
         //dd($sucursal);
     
 
-
-        $sucursal->codigo = $request->input('codigo');
-        $sucursal->descripcion = $request->input('descripcion');
-        $sucursal->direccion = $request->input('direccion');
-        $sucursal->estado = $request->input('estado');
+        $cproduccione->capacidad = $request->input('capacidad');
+        $cproduccione->codigo = $request->input('codigo');
+        $cproduccione->costoadicional = $request->input('costoadicional');
+        $cproduccione->costohora = $request->input('costohora');
+        $cproduccione->descripcion = $request->input('descripcion');
+    
+        $cproduccione->estado = $request->input('estado');
+        $cproduccione->nombre = $request->input('nombre');
      
-        $sucursal->save();
+        $cproduccione->save();
 
-        return redirect()->route('sucursals.index', $sucursal->id)
+        return redirect()->route('cproducciones.index', $cproduccione->id)
             ->with('info', 'Rol guardado con éxito');
     }
 
@@ -114,10 +117,10 @@ class SucursalController extends Controller
      */
     public function destroy($id)
     {
-        $mensaje = Sucursal::find($id);
-        $sucursal = Sucursal::find($id)->delete();
+        $mensaje = Cproduccione::find($id);
+        $cproduccione = Cproduccione::find($id)->delete();
         
-        Log::info( 'Sucursal eliminado: ' .$mensaje->id . ' ' . $mensaje->name . ' ' . $mensaje->description );
+        Log::info( 'Centro Produccion eliminado: ' .$mensaje->id . ' ' . $mensaje->name . ' ' . $mensaje->description );
         return back()->with('info', 'Eliminado correctamente');
     }
 }

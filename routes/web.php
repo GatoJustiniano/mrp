@@ -20,6 +20,8 @@ Route::middleware(['auth'])->group(function () {
 	Route::get('/sprint1', 'HomeController@sprint1')->name('sprint1');
 	//Sprint 2
 	Route::get('/sprint2', 'HomeController@sprint2')->name('sprint2');
+    	//Sprint 4
+	Route::get('/sprint4', 'HomeController@sprint4')->name('sprint4');
 	//Herramientas
 	Route::get('/herramientas', 'HomeController@settings')->name('settings');
 	//Nómina
@@ -117,7 +119,72 @@ Route::middleware(['auth'])->group(function () {
 	Route::get('almacens/{almacen}/edit', 'AlmacenController@edit')->name('almacens.edit')
 		->middleware('can:almacens.edit');
 
+	//Operaciones
+	Route::post('operaciones/store', 'OperacioneController@store')->name('operaciones.store')
+		->middleware('can:operaciones.create');
 
+	Route::get('sprint4/operaciones', 'OperacioneController@index')->name('operaciones.index')
+		->middleware('can:operaciones.index');
+
+	Route::get('operaciones/create', 'OperacioneController@create')->name('operaciones.create')
+		->middleware('can:operaciones.create');
+
+	Route::put('operaciones/{operacione}', 'OperacioneController@update')->name('operaciones.update')
+		->middleware('can:operaciones.edit');
+
+	Route::get('sprint4/operaciones/{operacione}', 'OperacioneController@show')->name('operaciones.show')
+		->middleware('can:operaciones.show');
+
+	Route::delete('operaciones/{operacione}', 'OperacioneController@destroy')->name('operaciones.destroy')
+		->middleware('can:operaciones.destroy');
+
+	Route::get('operaciones/{operacione}/edit', 'OperacioneController@edit')->name('operaciones.edit')
+		->middleware('can:operaciones.edit');
+
+	//Cproducciones
+	Route::post('cproducciones/store', 'CproduccioneController@store')->name('cproducciones.store')
+		->middleware('can:cproducciones.create');
+
+	Route::get('sprint4/cproducciones', 'CproduccioneController@index')->name('cproducciones.index')
+		->middleware('can:cproducciones.index');
+
+	Route::get('cproducciones/create', 'CproduccioneController@create')->name('cproducciones.create')
+		->middleware('can:cproducciones.create');
+
+	Route::put('cproducciones/{cproduccione}', 'CproduccioneController@update')->name('cproducciones.update')
+		->middleware('can:cproducciones.edit');
+
+	Route::get('sprint4/cproducciones/{cproduccione}', 'CproduccioneController@show')->name('cproducciones.show')
+		->middleware('can:cproducciones.show');
+
+	Route::delete('cproducciones/{cproduccione}', 'CproduccioneController@destroy')->name('cproducciones.destroy')
+		->middleware('can:cproducciones.destroy');
+
+	Route::get('cproducciones/{cproduccione}/edit', 'CproduccioneController@edit')->name('cproducciones.edit')
+		->middleware('can:cproducciones.edit');
+
+        	//listamaterial
+	Route::post('listamaterials/store', 'ListamaterialController@store')->name('listamaterials.store')
+    ->middleware('can:listamaterials.create');
+
+Route::get('sprint4/listamaterials', 'ListamaterialController@index')->name('listamaterials.index')
+    ->middleware('can:listamaterials.index');
+
+Route::get('listamaterials/create', 'ListamaterialController@create')->name('listamaterials.create')
+    ->middleware('can:listamaterials.create');
+
+Route::put('listamaterials/{listamaterial}', 'ListamaterialController@update')->name('listamaterials.update')
+    ->middleware('can:listamaterials.edit');
+
+Route::get('sprint4/listamaterials/{listamaterial}', 'ListamaterialController@show')->name('listamaterials.show')
+    ->middleware('can:listamaterials.show');
+
+Route::delete('listamaterials/{listamaterial}', 'ListamaterialController@destroy')->name('listamaterials.destroy')
+    ->middleware('can:listamaterials.destroy');
+
+Route::get('listamaterials/{listamaterial}/edit', 'ListamaterialController@edit')->name('listamaterials.edit')
+    ->middleware('can:listamaterials.edit');
+    
 	//Departamento
 	Route::post('departamentos/store', 'DepartamentoController@store')->name('departamentos.store')
 		->middleware('can:departamentos.create');
