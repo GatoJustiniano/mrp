@@ -53,7 +53,7 @@
                                 <td>{{ $operacione->id }}</td>
                                 <td>{{ $operacione->codigo }}</td>
                                 <td>{{ $operacione->nombre }}</td>
-                                <td>{{ $operacione->cproduccione}}</td>
+                                <td>{{ $operacione->centroproduccion}}</td>
                                 <td>{{ $operacione->duracion }}</td>
                                 <td>{{ $operacione->costoduracion }}</td>
                                 <td>{{ $operacione->descripcion }}</td>

@@ -55,9 +55,9 @@
 
 <div class="form-row">
 	<div class="form-group col-md-4">
-		{{Form::label('id_empleado','Promotor: ')}}
-		<select name="id_empleado" id="id_empleado" class="custom-select">Seleccionar Promotor
-			<option value="">Seleccione un promotor</option>
+		{{Form::label('id_empleado','Vendedor: ')}}
+		<select name="id_empleado" id="id_empleado" class="custom-select">Seleccionar Vendedor
+			<option value="">Seleccione un Vendedor</option>
 			@foreach($empleados as $empleado)
 				<option value="{{ $empleado->id }}">
 					{{$empleado->nombre}}

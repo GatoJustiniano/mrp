@@ -42,9 +42,7 @@
                                 <th>Nombre</th>
 
                                 <th>codigo</th>
-                                <th>tipo</th>
-                                <th>estado</th>
-                                <th>sub_categoria_id</th>
+                                <th>Sub Categoria</th>
 
 
 
@@ -58,9 +56,7 @@
                                 <td>{{ $articulo->nombre }}</td>
 
                                 <td>{{ $articulo->codigo }}</td>
-                                <td>{{ $articulo->tipo }}</td>
-                                <td>{{ $articulo->estado }}</td>
-                                <td>{{ $articulo->sub_categoria_id }}</td>
+                                <td>{{ $articulo->sub_categoria->nombre }}</td>
 
 
 

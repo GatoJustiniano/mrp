@@ -18,7 +18,7 @@ class Operacione extends Model
     public function estado(){
         return $this->belongTo(App\Estado);
     }
-    public function cproduccione(){
+    public function fcproduccione(){
         return $this->belongTo(App\Cproduccione);
     }
 

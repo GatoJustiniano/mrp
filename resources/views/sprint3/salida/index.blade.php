@@ -82,6 +82,13 @@
 </div>
 
 @endsection
+@section("reportes")
+        <h5>Exportar datos</h5>
+        <p>
+            Click <a href="{{ route('ingresos.pdf') }}">aquí</a> para descargar en PDF.
+        </p>
+
+@endsection
 @section("scripts")
 <script>
 
