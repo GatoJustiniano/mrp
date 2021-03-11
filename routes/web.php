@@ -512,6 +512,28 @@ Route::get('listamaterials/{listamaterial}/edit', 'ListamaterialController@edit'
     //Ingreso
     Route::get('sprint3/ingreso', 'IngresoController@index')->name('ingresos.index')
     ->middleware('can:ingresos.index');
+
+    //Ruta
+    Route::get('sprint4/ruta', 'RutaController@index')->name('rutas.index')
+        ->middleware('can:rutas.index');
+
+    Route::get('ruta/{ruta}', 'RutaController@show')->name('rutas.show')
+        ->middleware('can:rutas.show');
+
+    Route::get('ruta/{ruta}/edit', 'RutaController@edit')->name('rutas.edit')
+        ->middleware('can:rutas.edit');
+
+    Route::delete('ruta/{ruta}/{tipo}', 'RutaController@destroy')->name('rutas.destroy')
+        ->middleware('can:rutas.destroy');
+
+    Route::put('ruta/{ruta}', 'RutaController@update')->name('rutas.update')
+        ->middleware('can:rutas.edit');
+
+    Route::get('sprint4/ruta/create', 'RutaController@create')->name('rutas.create')
+        ->middleware('can:rutas.create');
+
+    Route::post('ruta/store', 'RutaController@store')->name('rutas.store')
+        ->middleware('can:rutas.create');
 });
 
 
