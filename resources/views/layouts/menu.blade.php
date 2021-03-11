@@ -164,7 +164,10 @@
                 <ul class="nav flex-column">
                 <li><a class="nav-pills" href="{{ route('cproducciones.index') }}">Centro de Producción </a></li>
                 <li><a class="nav-pills" href="{{ route('operaciones.index') }}">Operaciones </a></li>
-                <li><a class="nav-pills" href="{{ route('rutas.index') }}">Rutas </a></li>             
+                <li><a class="nav-pills" href="{{ route('listamaterials.index') }}">BOM </a></li>
+                <li><a class="nav-pills" href="#">Planificación </a></li>      
+                <li><a class="nav-pills" href="{{ route('rutas.index') }}">Rutas </a></li>      
+                <li><a class="nav-pills" href="#">Planificación Diario</a></li>             
                 </ul>
             </li> 
             <li>

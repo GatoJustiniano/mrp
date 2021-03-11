@@ -38,4 +38,9 @@ class IngresoController extends Controller
 
         return view('sprint3/ingreso.index', compact('ingresos'));
     }
+
+    public function exportPDF()
+    {
+        return 'datos;';
+    }
 }

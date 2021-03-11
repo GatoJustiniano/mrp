@@ -23,9 +23,9 @@ Route::middleware(['auth'])->group(function () {
     //Sprint 4
 	Route::get('/sprint4', 'HomeController@sprint4')->name('sprint4');
 	//Herramientas
-	Route::get('/herramientas', 'HomeController@settings')->name('settings');
-	//Nómina
-	Route::get('/nomina', 'HomeController@nomina')->name('nomina');
+    Route::get('/herramientas', 'HomeController@settings')->name('settings');
+    //Producción
+	Route::get('/produccion', 'HomeController@produccion')->name('produccion');
 	//Inventario
 	Route::get('/inventario', 'HomeController@inventario')->name('inventario');
 
@@ -163,27 +163,27 @@ Route::middleware(['auth'])->group(function () {
 	Route::get('cproducciones/{cproduccione}/edit', 'CproduccioneController@edit')->name('cproducciones.edit')
 		->middleware('can:cproducciones.edit');
 
-        	//listamaterial
+    //listamaterial
 	Route::post('listamaterials/store', 'ListamaterialController@store')->name('listamaterials.store')
     ->middleware('can:listamaterials.create');
 
-Route::get('sprint4/listamaterials', 'ListamaterialController@index')->name('listamaterials.index')
-    ->middleware('can:listamaterials.index');
+    Route::get('sprint4/listamaterials', 'ListamaterialController@index')->name('listamaterials.index')
+        ->middleware('can:listamaterials.index');
 
-Route::get('listamaterials/create', 'ListamaterialController@create')->name('listamaterials.create')
-    ->middleware('can:listamaterials.create');
+    Route::get('listamaterials/create', 'ListamaterialController@create')->name('listamaterials.create')
+        ->middleware('can:listamaterials.create');
 
-Route::put('listamaterials/{listamaterial}', 'ListamaterialController@update')->name('listamaterials.update')
-    ->middleware('can:listamaterials.edit');
+    Route::put('listamaterials/{listamaterial}', 'ListamaterialController@update')->name('listamaterials.update')
+        ->middleware('can:listamaterials.edit');
 
-Route::get('sprint4/listamaterials/{listamaterial}', 'ListamaterialController@show')->name('listamaterials.show')
-    ->middleware('can:listamaterials.show');
+    Route::get('sprint4/listamaterials/{listamaterial}', 'ListamaterialController@show')->name('listamaterials.show')
+        ->middleware('can:listamaterials.show');
 
-Route::delete('listamaterials/{listamaterial}', 'ListamaterialController@destroy')->name('listamaterials.destroy')
-    ->middleware('can:listamaterials.destroy');
+    Route::delete('listamaterials/{listamaterial}', 'ListamaterialController@destroy')->name('listamaterials.destroy')
+        ->middleware('can:listamaterials.destroy');
 
-Route::get('listamaterials/{listamaterial}/edit', 'ListamaterialController@edit')->name('listamaterials.edit')
-    ->middleware('can:listamaterials.edit');
+    Route::get('listamaterials/{listamaterial}/edit', 'ListamaterialController@edit')->name('listamaterials.edit')
+        ->middleware('can:listamaterials.edit');
     
 	//Departamento
 	Route::post('departamentos/store', 'DepartamentoController@store')->name('departamentos.store')
@@ -535,7 +535,9 @@ Route::get('listamaterials/{listamaterial}/edit', 'ListamaterialController@edit'
     Route::post('ruta/store', 'RutaController@store')->name('rutas.store')
         ->middleware('can:rutas.create');
 
-    //
+    //Exportar datos
+    Route::get('ingresos-lista-pdf', 'IngresoController@exportPDF')->name('ingresos.pdf')
+        ->middleware('can:ingresos.pdf');
 });
 
 

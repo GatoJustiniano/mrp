@@ -256,7 +256,7 @@
 
                     <div class="col-md-4">
                         <div class="info">
-                            <a class="" href="#">
+                            <a class="" href="{{ route('produccion') }}">
                                 <div class="icon icon-success">
                                     <i class="material-icons">fact_check</i>
                                 </div>

@@ -45,20 +45,8 @@ class HomeController extends Controller
         return view('herramientas.herramientas');
     }
 
-    public function nomina(){
-        $empleados = DB::table('historial_empleado')
-            ->join('empleado', 'id_empleado_historial', '=', 'id_empleado')
-            ->join('area', 'id_area_historial', '=', 'id_area')
-            ->join('cargo', 'id_cargo_historial', '=', 'id_cargo')
-            ->join('sucursal', 'id_sucursal_historial', '=', 'id_sucursal')
-            ->select('historial_empleado.*',
-                     'nombre_empleado',
-                     'nombre_area',
-                     'nombre_cargo',
-                     'nombre_sucursal'         
-                     )
-            ->paginate(15);
-        return view('nomina.nomina', compact('empleados'));
+    public function produccion(){
+        return view('produccion.produccion');
     }
 
 }
