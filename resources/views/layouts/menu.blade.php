@@ -160,7 +160,7 @@
                 </ul>
             </li>
             <li>
-              <a class="nav-link" href="{{ route('sprint4') }}">Sprint 4</a>
+              <a class="nav-link" href="#">Sprint 4</a>
                 <ul class="nav flex-column">
                 <li><a class="nav-pills" href="{{ route('cproducciones.index') }}">Centro de Producción </a></li>
                 <li><a class="nav-pills" href="{{ route('operaciones.index') }}">Operaciones </a></li>

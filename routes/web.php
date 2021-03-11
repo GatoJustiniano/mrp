@@ -534,6 +534,8 @@ Route::get('listamaterials/{listamaterial}/edit', 'ListamaterialController@edit'
 
     Route::post('ruta/store', 'RutaController@store')->name('rutas.store')
         ->middleware('can:rutas.create');
+
+    //
 });
 
 

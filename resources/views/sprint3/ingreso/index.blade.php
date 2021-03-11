@@ -82,6 +82,14 @@
 </div>
 
 @endsection
+
+@section("reportes")
+        <h1>Exportar datos</h1>
+        <p>
+            Click <a href="">aquí</a> para descargar en PDF.
+        </p>
+
+@endsection
 @section("scripts")
 <script>
 

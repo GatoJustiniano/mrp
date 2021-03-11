@@ -165,7 +165,9 @@
         </ul>
       </nav>
 
-      <aside id="aside">reports</aside>
+      <aside id="aside">
+      @yield('reportes')
+      </aside>
    </div>
 
   
