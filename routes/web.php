@@ -20,7 +20,7 @@ Route::middleware(['auth'])->group(function () {
 	Route::get('/sprint1', 'HomeController@sprint1')->name('sprint1');
 	//Sprint 2
 	Route::get('/sprint2', 'HomeController@sprint2')->name('sprint2');
-    	//Sprint 4
+    //Sprint 4
 	Route::get('/sprint4', 'HomeController@sprint4')->name('sprint4');
 	//Herramientas
 	Route::get('/herramientas', 'HomeController@settings')->name('settings');

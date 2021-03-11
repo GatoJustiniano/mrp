@@ -64,11 +64,31 @@
 
   <div class="col-md-3">
       <div class="info">
-          <a href="{{ route('empleados.index') }}">
+          <a href="{{ route('estado.index') }}">
               <div class="icon icon-info">
-                  <i class="material-icons">person</i>
+                  <i class="material-icons">foundation</i>
               </div>
-              <h4 class="info-title">Empleado</h4>
+              <h4 class="info-title">Estado</h4>
+          </a>
+      </div>
+  </div>
+  <div class="col-md-3">
+      <div class="info">
+          <a href="{{ route('provincia.index') }}">
+              <div class="icon icon-warning">
+                  <i class="material-icons">house</i>
+              </div>
+              <h4 class="info-title">Provincias</h4>
+          </a>
+      </div>
+  </div>
+  <div class="col-md-3">
+      <div class="info">
+          <a href="{{ route('municipio.index') }}">
+              <div class="icon icon-secondary">
+                  <i class="material-icons">house_siding</i>
+              </div>
+              <h4 class="info-title">Munipios</h4>
           </a>
       </div>
   </div>

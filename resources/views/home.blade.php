@@ -245,7 +245,7 @@
 
                     <div class="col-md-4">
                         <div class="info">
-                            <a href="{{ route('nomina') }}">
+                            <a href="{{ route('empleados.index') }}">
                                 <div class="icon icon-danger">
                                     <i class="material-icons">assignment</i>
                                 </div>
@@ -279,7 +279,7 @@
 
                     <div class="col-md-4">
                         <div class="info">
-                            <a href="">
+                            <a href=" {{ route('compras.index') }} ">
                                 <div class="icon icon-info">
                                     <i class="material-icons">shopping_bag</i>
                                 </div>

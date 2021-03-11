@@ -31,11 +31,11 @@
 
   <div class="col-md-3">
       <div class="info">
-          <a class="" href="#">
+          <a class="" href="{{ route('clientes.index') }}">
               <div class="icon icon-success">
                   <i class="material-icons">local_library</i>
               </div>
-              <h4 class="info-title">Materia Prima </h4>
+              <h4 class="info-title">Clientes </h4>
           </a>
       </div>
   </div>
@@ -62,16 +62,46 @@
       </div>
   </div>
 
-  <div class="col-md-3">
-      <div class="info">
-          <a href="#">
-              <div class="icon icon-warning">
-                  <i class="material-icons">assignment</i>
-              </div>
-              <h4 class="info-title">Mov Inventario</h4>
-          </a>
-      </div>
-  </div>
+    <div class="col-md-3">
+        <div class="info">
+            <a href="{{ route('pedidos.index') }}">
+                <div class="icon icon-danger">
+                    <i class="material-icons">assignment</i>
+                </div>
+                <h4 class="info-title">Pedido </h4>
+            </a>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="info">
+            <a href="{{ route('ventas.index') }}">
+                <div class="icon icon-secondary">
+                    <i class="material-icons">assignment</i>
+                </div>
+                <h4 class="info-title">Venta</h4>
+            </a>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="info">
+            <a href="{{ route('compras.index') }}">
+                <div class="icon icon-success">
+                    <i class="material-icons">assignment</i>
+                </div>
+                <h4 class="info-title">Compra</h4>
+            </a>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="info">
+            <a href="{{ route('salidas.index') }}">
+                <div class="icon icon-warning">
+                    <i class="material-icons">assignment</i>
+                </div>
+                <h4 class="info-title">View Salidas</h4>
+            </a>
+        </div>
+    </div>
   
 
 </div>

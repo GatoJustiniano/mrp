@@ -158,14 +158,6 @@
                     <li><a class="nav-pills" href="#">View Inventario </a></li>
                     <li><a class="nav-pills" href="#">View Mov de inventario </a></li>
                 </ul>
-            </li>
-            <li>
-              <a class="nav-link" href="#Producción">Producción</a>
-              <ul class="nav flex-column">
-                <li><a class="nav-pills" href="#">BoM </a></li>
-                <li><a class="nav-pills" href="#">MPS </a></li>
-                <li><a class="nav-pills" href="#">MRP </a></li>
-                </ul>
             </li> 
             <li>
               <a class="nav-link" href="{{ route('settings') }}">Herramientas</a>
