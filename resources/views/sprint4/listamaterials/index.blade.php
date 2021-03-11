@@ -29,16 +29,18 @@
                     </a>
                 @endcan
             </h2>
-
+            @php
+                $suma=0;
+            @endphp
        
             <div class="card" >
                     <table class="table">
                         <thead>
                             <tr>
-                            
+                               
                                 <th>Componente</th>
                                 <th>Cantidad</th>
-                                <th>Unidad medida</th>
+                                <th>Unidadmedida</th>
                                
                             
                                 <th>Costo unitario</th>
@@ -62,8 +64,10 @@
                                 
                               
 
-
-
+                                @php
+          $suma+=$listamaterial->subtotal;
+        @endphp
+    
                             </tr>
                             @endforeach
                         </tbody>
@@ -71,10 +75,22 @@
                     <div>
                         {{ $listamaterials->links() }}
                     </div>
-                    
+                   
                 </div>
 
         </div>
+
+        <div class="form-group">
+<h2 class="title text-center">
+           
+                    <a href=""
+                    class="btn btn-sm btn-info pull-right">
+                       monto total {{$suma}}
+                    </a>
+                    
+            </h2>
+            
+</div>
 
     </div>
         

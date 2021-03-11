@@ -20,19 +20,6 @@
 
 
 
-<div class="form-group">
-	{{ Form::label('unidadmedida', 'Unidadmedida') }}
-	{{ Form::textarea('unidadmedida', null, ['class' => 'form-control','rows' => '2']) }}
-</div>
-<div class="form-group">
-	{{ Form::label('costounitario', 'Costo unitario:') }}
-	{{ Form::textarea('costounitario', null, ['class' => 'form-control','rows' => '3']) }}
-</div>
-<div class="form-group">
-	{{ Form::label('subtotal', 'Subtotal:') }}
-	{{ Form::textarea('subtotal', null, ['class' => 'form-control','rows' => '4']) }}
-</div>
-
 
 
 
@@ -44,5 +31,5 @@
 
 
 <div class="form-group">
-	{{ Form::submit('Guardar', ['class' => 'btn btn-sm btn-primary']) }}
+	{{ Form::submit('Agregar Componente', ['class' => 'btn btn-sm btn-primary']) }}
 </div>
