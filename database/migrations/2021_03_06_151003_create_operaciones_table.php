@@ -19,9 +19,7 @@ class CreateOperacionesTable extends Migration
             $table->string('codigo');
             $table->string('nombre');
             $table->tinyinteger('cproduccione')->unsigned();
-            $table->foreign('cproduccione')->references('id')->on('cproducciones')
-            ->onUpdate('cascade')
-            ->onDelete('cascade'); 
+             
        
         
             $table->float('duracion');

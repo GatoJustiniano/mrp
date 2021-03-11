@@ -509,6 +509,9 @@ Route::get('listamaterials/{listamaterial}/edit', 'ListamaterialController@edit'
     //Salida
     Route::get('sprint3/salida', 'SalidaController@index')->name('salidas.index')
         ->middleware('can:salidas.index');
+    //Ingreso
+    Route::get('sprint3/ingreso', 'IngresoController@index')->name('ingresos.index')
+    ->middleware('can:ingresos.index');
 });
 
 

@@ -154,7 +154,7 @@
                     <li><a class="nav-pills" href="{{ route('ventas.index') }}">Venta </a></li>
                     <li><a class="nav-pills" href="{{ route('compras.index') }}">Compra </a></li>
                     <li><a class="nav-pills" href="{{ route('salidas.index') }}">View Salidas </a></li>
-                    <li><a class="nav-pills" href="#">View Ingresos </a></li>
+                    <li><a class="nav-pills" href="{{ route('ingresos.index') }}">View Ingresos </a></li>
                     <li><a class="nav-pills" href="#">View Inventario </a></li>
                     <li><a class="nav-pills" href="#">View Mov de inventario </a></li>
                 </ul>
