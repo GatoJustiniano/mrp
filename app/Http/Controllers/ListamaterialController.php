@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Listamaterial;
 use App\Estado;
 use App\Articulo;
+use Storage;
+use DB;
 //use Caffeinated\Shinobi\Models\Estado;
 
 use Illuminate\Support\Facades\Log;
@@ -44,20 +46,22 @@ class ListamaterialController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     *
+     * 
+     * @param  int  $id_var
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+  
     public function store(Request $request)
     {
-        $listamaterial = Listamaterial::create($request->all());
+        //$listamaterial = Listamaterial::create($request->all());
         //$listamaterial = Listamaterial::create($request->id,$request->componente, $request->cantidad, $request->unidadmedidad,$request->costounitario,$request->subtotal,$request->created_at,$request->update_at);
         //$listamaterial = Listamaterial::create(array_merge(request()->all(), ['unidadmedidad' => 'text']));
         /*$listamaterial = Listamaterial::all();
        // dd($id);
     
-
-       $req=0;
+ $req=0;
+      
         $listamaterial->id = $request->input('id');
         $listamaterial->componente = $request->input('componente');
         $listamaterial->cantidad = $request->input('cantidad');
@@ -65,7 +69,29 @@ class ListamaterialController extends Controller
         $listamaterial->costounitario = $request->input('costounitario');
         $listamaterial->subtotal = $req;
        $listamaterial->save();*/
-        $estados = Estado::all();
+       $variables = $request->all();
+        $id_var = $variables['componente'];
+        $id_cantidad = $variables['cantidad'];
+       //dd($id_cantidad);
+        $costounitario = DB::table('articulos')->where('id', $id_var)->value('precio_compra');
+        $unidadmedidad1 = DB::table('articulos')->where('id', $id_var)->value('unidad_medida_id');
+        $componente = DB::table('articulos')->where('id', $id_var)->value('nombre');
+        $unidadmedidad = DB::table('unidad_medidas')->where('id', $unidadmedidad1)->value('abreviatura');
+        //dd($costounitario);
+        $req=$costounitario * $id_cantidad;
+      //dd($req);
+            $data = [
+                    'id'      => $request->get('id'),
+                    'componente'       => $componente,
+                    'cantidad'     => $request->get('cantidad'),
+                    'unidadmedida'       => $unidadmedidad,
+                    'costounitario'     => $costounitario,
+                    'subtotal'     => $req
+                ];
+
+            
+            $listamaterial = Listamaterial::create($data);
+          
        // $componentes = Articulo::orderBy('id', 'desc')->pluck('nombre', 'id');
           //dd($listamaterial);
         return redirect()->route('listamaterials.index', $listamaterial->id)
