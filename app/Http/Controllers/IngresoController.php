@@ -41,6 +41,6 @@ class IngresoController extends Controller
 
     public function exportPDF()
     {
-        return 'datos;';
+        return 'error;';
     }
 }
